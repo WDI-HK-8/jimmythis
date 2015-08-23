@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # others
-gem 'bundle'
+gem 'bower'
 ruby '2.2.2'
 gem 'rails_12factor', group: :production
 gem 'rack-cors', :require => 'rack/cors'
