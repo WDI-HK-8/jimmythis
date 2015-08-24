@@ -1,3 +1,13 @@
-app.controller('StaticPagesCtrl', ['$scope', function($scope){
+app.controller('StaticPagesCtrl', ['$scope','$http', function($scope,$http){
   $scope.message = "Hello World!";
+  $scope.services = "No Services";
+
+  // $http.get(url + '/services').success(function(response) {
+  //   if(services.nil?) {
+  //     $scope.services = "No Services";
+  //   }
+  //   else {
+  //     $scope.services = response;
+  //   }
+  // });
 }]);
