@@ -32,6 +32,7 @@ gem 'devise_token_auth'
 gem 'omniauth'
 gem "better_errors"
 gem "binding_of_caller"
+gem 'puma'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
