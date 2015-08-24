@@ -1,0 +1,17 @@
+app.controller('SignUpCtrl', ['$scope','$auth', function($scope, $auth){
+  $scope.message = "Signup";
+
+  $scope.registrationForm = {};
+
+  $scope.signup = function() {
+    $auth.submitRegistration($scope.registrationForm).
+      then(function(response){
+        // handle success
+        console.log(response);
+      }).
+      catch(function(response){
+        // handle errors
+        console.log(response);
+      })
+  }
+}]);

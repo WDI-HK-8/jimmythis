@@ -1,9 +1,21 @@
-var app = angular.module('jimmythis', ['ngRoute']);
+var app = angular.module('jimmythis', ['ngRoute','ng-token-auth']);
 
-app.config(['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider','$authProvider', function($routeProvider, $authProvider) {
   $routeProvider.
     when('/', {
-      templateUrl: "<%= asset_path('') %>",
-      controller: ''
+      templateUrl: "<%= asset_path('static_pages/index.html') %>",
+      controller: 'StaticPagesCtrl'
+    }).
+    when('/signup', {
+      templateUrl: "<%= asset_path('auth/signup.html') %>",
+      controller: 'SignUpCtrl'
+    }).
+    when('/login', {
+      templateUrl: "<%= asset_path('auth/login.html') %>",
+      controller: 'LogInCtrl'
     })
+
+  $authProvider.configure({
+    apiUrl: ENV['URL'] || 'http://localhost:3000'
+  })
 }]);
