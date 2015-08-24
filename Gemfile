@@ -25,13 +25,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # others
 gem 'bower'
-ruby '2.2.2'
 gem 'rails_12factor', group: :production
 gem 'rack-cors', :require => 'rack/cors'
 gem 'devise_token_auth'
 gem 'omniauth'
-gem "better_errors"
-gem "binding_of_caller"
 gem 'puma'
 
 # Use ActiveModel has_secure_password
@@ -46,6 +43,8 @@ gem 'unicorn'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem "better_errors"
+  gem "binding_of_caller"
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
