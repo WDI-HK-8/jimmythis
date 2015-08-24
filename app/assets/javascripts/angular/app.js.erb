@@ -5,6 +5,10 @@ app.config(['$routeProvider','$authProvider', function($routeProvider, $authProv
     when('/', {
       templateUrl: "<%= asset_path('static_pages/index.html') %>",
       controller: 'StaticPagesCtrl'
+    }).
+    when('/signup', {
+      templateUrl: "<%= asset_path('auth/signup.html') %>",
+      controller: 'SignUpCtrl'
     })
 
   $authProvider.configure({
