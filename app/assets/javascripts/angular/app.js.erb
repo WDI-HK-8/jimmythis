@@ -9,6 +9,10 @@ app.config(['$routeProvider','$authProvider', function($routeProvider, $authProv
     when('/signup', {
       templateUrl: "<%= asset_path('auth/signup.html') %>",
       controller: 'SignUpCtrl'
+    }).
+    when('/login', {
+      templateUrl: "<%= asset_path('auth/login.html') %>",
+      controller: 'LogInCtrl'
     })
 
   $authProvider.configure({
