@@ -1,4 +1,6 @@
 class OrderController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     @order = Order.new(order_params,service_id: params[:service_id],user_id: 'user_id')
     if @order.save

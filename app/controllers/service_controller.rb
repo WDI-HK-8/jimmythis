@@ -4,10 +4,14 @@ class ServiceController < ApplicationController
   end
 
   def create
-    @service = Service.new(service_params)
-    if @service.save
+    if user_signed_in?
+      @service = Service.new(service_params,user_id: current_user.id)
+      if @service.save
+      else
+        render json: {message: "400 Bad Request"}, status: :bad_request
+      end
     else
-      render json: {message: "400 Bad Request"}, status: :bad_request
+      render json: {message: "User not authenticated"}, status: :unauthenticated
     end
   end
 
@@ -20,24 +24,32 @@ class ServiceController < ApplicationController
   end
 
   def update
-    @service = Service.find(params[:id])
-    if @service.nil?
-      render json: {message: "Cannot find service"}, status: :not_found
+    if user_signed_in?
+      @service = Service.find(params[:id])
+      if @service.nil?
+        render json: {message: "Cannot find service"}, status: :not_found
+      end
+      @service.update(service_params)
+    else
+      render json: {message: "User not authenticated"}, status: :unauthenticated
     end
-    @service.update(service_params)
   end
 
   def destroy
-    @service = Service.find(params[:id])
+    if user_signed_in?
+      @service = Service.find(params[:id])
 
-    if @service.nil?
-      render json: {message: "Cannot find service"}, status: :not_found
-    else
-      if @service.destroy
-        render json: {message: "Successfully deleted"}, status: :no_content
+      if @service.nil?
+        render json: {message: "Cannot find service"}, status: :not_found
       else
-        render json: {message: "Unsuccessfully deleted"}, status: :bad_request
+        if @service.destroy
+          render json: {message: "Successfully deleted"}, status: :no_content
+        else
+          render json: {message: "Unsuccessfully deleted"}, status: :bad_request
+        end
       end
+    else
+      render json: {message: "User not authenticated"}, status: :unauthenticated
     end
   end
 
