@@ -1,0 +1,9 @@
+var app = angular.module('jimmythis', ['ngRoute']);
+
+app.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.
+    when('/', {
+      templateUrl: "<%= asset_path('') %>",
+      controller: ''
+    })
+}]);
