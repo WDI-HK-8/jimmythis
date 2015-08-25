@@ -1,10 +1,13 @@
 <navbar></navbar>
 
 <div class="container-fluid wrap">
-  <div class="row">
-
-    <h1>{{ message }}</h1>
-
+  
+  <div class="intro-message text-center">
+      <h2>{{ message }}</h2>
+      <h3>Be part of the community</h3>
+  </div>
+  
+  <div class="main-content">
     <form ng-submit="signup()">
       <div class="form-group">
         <label>Name</label>
@@ -25,6 +28,6 @@
       <button type="submit" class="btn btn-primary">Submit</button>
       <a href="/#/" class="btn btn-danger">Back</a>
     </form>
-    
   </div>
+
 </div>

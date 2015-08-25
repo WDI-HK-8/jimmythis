@@ -1,10 +1,13 @@
 <navbar></navbar>
 
 <div class="container-fluid wrap">
-  <div class="row">
 
-    <h1>{{ message }}</h1>
+  <div class="intro-message text-center">
+      <h2>{{ message }}</h2>
+      <h3>Update your settings carefully.</h3>
+  </div>
 
+  <div class="main-content">
     <form ng-submit="updateAccount()">
       <div class="form-group">
         <label>Name</label>
@@ -33,6 +36,6 @@
       <button type="submit" class="btn btn-primary">Save</button>
       <a href="/#/" class="btn btn-danger">Cancel</a>
     </form>
-    
   </div>
+
 </div>

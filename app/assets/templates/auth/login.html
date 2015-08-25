@@ -2,21 +2,26 @@
 
 <div class="container-fluid wrap">
   
-  <h1>{{message}}</h1>
+  <div class="intro-message text-center">
+      <h2>{{ message }}</h2>
+      <h3>Already a member? Niiice.</h3>
+  </div>
   
-  <form ng-submit="login()" ng-init="loginForm = {}">
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" name="email" ng-model="loginForm.email" required="required" class="form-control">
-    </div>
+  <div class="main-content">
+    <form ng-submit="login()" ng-init="loginForm = {}">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" ng-model="loginForm.email" required="required" class="form-control">
+      </div>
 
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" name="password" ng-model="loginForm.password" required="required" class="form-control">
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Log In</button>
-    <a href="/#/" class="btn btn-danger">Back</a>
-  </form>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" ng-model="loginForm.password" required="required" class="form-control">
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Log In</button>
+      <a href="/#/" class="btn btn-danger">Back</a>
+    </form>
+  </div>
   
 </div>

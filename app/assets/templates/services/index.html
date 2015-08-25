@@ -1,16 +1,24 @@
 <navbar></navbar>
 
 <div class="container-fluid wrap">
-  <h2>Manage Services</h2>
-  <button class="btn btn-primary">Add Service</button>
+
+  <div class="intro-message text-center">
+      <h2>{{ message }}</h2>
+      <h3>Have a look at your purchases and sales.</h3>
+  </div>
+  
   <div class="main-content">
-    <div class="container">
-      <div ng-repeat="service in services" ng-hide="noServices">
-        <span>{{ service.title }}</span>{{ service.district }}
-        <button><a href="" class="btn btn-primary">Edit</a></button>
-        <button><a href="" class="btn btn-primary">Delete</a></button>
+    <button class="btn btn-primary">Add Service</button>
+    <div class="main-content">
+      <div class="container">
+        <div ng-repeat="service in services" ng-hide="noServices">
+          <span>{{ service.title }}</span>{{ service.district }}
+          <button><a href="" class="btn btn-primary">Edit</a></button>
+          <button><a href="" class="btn btn-primary">Delete</a></button>
+        </div>
+        <h4 ng-show="noServices">No Services currently offered</h4>
       </div>
-      <h4 ng-show="noServices">No Services currently offered</h4>
     </div>
   </div>
+
 </div>
