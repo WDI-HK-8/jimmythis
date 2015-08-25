@@ -13,7 +13,12 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="loggedIn"><a href="/#/login">Log In</a></li>
         <li ng-hide="loggedIn"><a href="/#/signup" class="btn btn-primary">Join Today</a></li>
-        <li ng-show="loggedIn"><button class="btn btn-primary" ng-click="logout()">Log Out</button></li>
+        <li class="dropdown" ng-show="loggedIn">
+          <a href="/#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged In <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/#/" ng-click="logout()">Log Out</a></li>
+          </ul>
+        </li>
       </ul>
     </div> 
   </div>
