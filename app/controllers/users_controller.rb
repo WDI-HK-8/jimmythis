@@ -5,9 +5,11 @@ class UsersController < ApplicationController
 
   def show_orders
     @orders = User.find(params[:id]).orders
+    render 'show'
   end
 
   def show_services
     @services = User.find(params[:id]).services
+    render 'show'
   end
 end
