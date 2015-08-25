@@ -45,8 +45,10 @@ ActiveRecord::Schema.define(version: 20150824134751) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
-    t.integer  "seller_id"
+    t.integer  "user_id"
   end
+
+  add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
@@ -74,4 +76,5 @@ ActiveRecord::Schema.define(version: 20150824134751) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
+  add_foreign_key "services", "users"
 end
