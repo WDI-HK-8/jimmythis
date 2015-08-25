@@ -9,4 +9,10 @@ app.controller('ServicesIndexCtrl', ['$scope','$auth','$http','$location', funct
       console.log(response);
     });
   };
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  console.log($auth.authenticate)
+  $http.get(url + '/users/' +  + '?includes=orders,services').success(function(response) {
+    $scope.services = response.services;
+  });
 }]);
