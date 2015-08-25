@@ -1,10 +1,10 @@
-if @orders.any?
+if @orders
   json.array! @orders do |order|
     json.id order.id
     json.status order.status
     json.created_at order.created_at
   end
-elsif @services.any?
+elsif @services
   json.array! @services do |service|
     json.id service.id
     json.title service.title
