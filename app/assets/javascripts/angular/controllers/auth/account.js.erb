@@ -1,0 +1,34 @@
+app.controller('AccountCtrl', ['$scope', '$http', '$location', '$auth', function($scope, $http, $location, $auth){
+
+  $scope.message = "Account";
+  $scope.updateAccountForm = {};
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+
+  $auth.validateUser()
+    .then(function(response) {
+      $scope.loggedIn = true;
+      $http.get(url + '/users/' + response.id).success(function(response){
+        console.log(response);
+        $scope.updateAccountForm.name = response.name;
+        $scope.updateAccountForm.email = response.email;
+        $scope.updateAccountForm.phone = response.phone;
+        $scope.updateAccountForm.description = response.description;
+      });
+    })
+    .catch(function(resp) {
+      $location.path('/');
+    });
+
+  // $scope.updateAccount = function() {
+  //   $auth.updateAccount($scope.updateAccountForm)
+  //     .then(function(resp) {
+  //       console.log(response);
+  //       $location.path('/');
+  //     })
+  //     .catch(function(resp) {
+  //       console.log(response);
+  //     });
+  // };
+
+}]);

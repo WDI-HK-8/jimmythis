@@ -1,5 +1,5 @@
 <nav class="navbar">
-  <div class="container-fluid wrap">
+  <div class="container wrap">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
         <span class="sr-only">Toggle navigation</span>
@@ -14,7 +14,7 @@
         <li ng-hide="loggedIn"><a href="/#/login">Log In</a></li>
         <li ng-hide="loggedIn"><a href="/#/signup" class="btn btn-primary">Join Today</a></li>
         <li class="dropdown" ng-show="loggedIn">
-          <a href="/#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged In <span class="caret"></span></a>
+          <a href="/#/services" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged In <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/#/account">Account</a></li>
             <li><a href="/#/services">Services</a></li>
@@ -26,18 +26,16 @@
   </div>
 </nav>
 <div class="container-fluid wrap">
-  <div class="intro-message text-center">
-      <h2>For HK$50, I will: sing a song for your Valentine's dinner</h2>
-      <h3>Buy and sell micro services in your neighborhood.</h3>
-  </div>
+  <h2>Manage Services</h2>
+  <button class="btn btn-primary">Add Service</button>
   <div class="main-content">
-    <div class="row">
-      <div class="category-list col-xs-4">
-        <h3>Categories</h3>
+    <div class="container">
+      <div ng-repeat="service in services" ng-hide="noServices">
+        <span>{{ service.title }}</span>{{ service.district }}
+        <button><a href="" class="btn btn-primary">Edit</a></button>
+        <button><a href="" class="btn btn-primary">Delete</a></button>
       </div>
-      <div class="services-list col-xs-8">
-        <h3>Services</h3>
-      </div>
+      <h4 ng-show="noServices">No Services currently offered</h4>
     </div>
   </div>
 </div>
