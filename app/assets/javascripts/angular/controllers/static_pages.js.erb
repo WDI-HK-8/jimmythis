@@ -1,8 +1,20 @@
-app.controller('StaticPagesCtrl', ['$scope','$http','$auth', function($scope,$http,$auth){
+app.controller('StaticPagesCtrl', ['$scope','$http','$auth','$location', function($scope,$http,$auth,$location){
   
-  if($auth.authenticate) {
-    $scope.loggedIn = true;
-  } else {
-    $scope.loggedOut = true;
-  }
+  $auth.validateUser()
+    .then(function(resp) {
+      $scope.loggedIn  = true;
+    })
+    .catch(function(resp) {
+      $scope.loggedIn  = false;
+    });
+
+  $scope.logout = function() {
+    $auth.signOut().then(function(response) {
+      console.log(response);
+      $location.path('/');
+    }).catch(function(response) {
+      console.log(response);
+    });
+  };
+
 }]);
