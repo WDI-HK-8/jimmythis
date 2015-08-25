@@ -18,6 +18,28 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def update
+    @category = Category.find(params[:id])
+    if @category.nil?
+      render json: {message: "Cannot find category"}, status: :not_found
+    end
+    @category.update(category_params)
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+
+    if @category.nil?
+      render json: {message: "Cannot find category"}, status: :not_found
+    else
+      if @category.destroy
+        render json: {message: "Successfully deleted"}, status: :no_content
+      else
+        render json: {message: "Unsuccessfully deleted"}, status: :bad_request
+      end
+    end
+  end
+
   private 
   def category_params
     params.require(:category).permit(:name)
