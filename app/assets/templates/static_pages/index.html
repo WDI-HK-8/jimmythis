@@ -13,6 +13,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="loggedIn"><a href="/#/login">Log In</a></li>
         <li ng-hide="loggedIn"><a href="/#/signup" class="btn btn-primary">Join Today</a></li>
+        <li ng-show="loggedIn"><button class="btn btn-primary" ng-click="logout()">Log Out</button></li>
       </ul>
     </div> 
   </div>
