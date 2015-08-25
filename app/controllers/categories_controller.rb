@@ -1,4 +1,4 @@
-class CategoryController < ApplicationController
+class CategoriesController < ApplicationController
   def index
     @categories = Category.all
   end
@@ -15,6 +15,7 @@ class CategoryController < ApplicationController
     @services = Service.where(category: params[:id])
     if @services.nil?
       render json: {message: "Cannot find category or category has no services"}, status: :not_found
+    end
   end
 
   private 

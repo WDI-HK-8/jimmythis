@@ -1,4 +1,4 @@
-class RatingController < ApplicationController
+class RatingsController < ApplicationController
   before_action :authenticate_user!
 
   def create
