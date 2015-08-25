@@ -23,7 +23,6 @@ app.controller('AccountCtrl', ['$scope', '$http', '$location', '$auth', function
   $scope.updateAccount = function() {
     $auth.updateAccount($scope.updateAccountForm)
       .then(function(response) {
-        console.log($scope.updateAccountForm)
         console.log(response);
         $location.path('/');
       })
