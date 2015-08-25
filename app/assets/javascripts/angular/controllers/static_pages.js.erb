@@ -1,4 +1,9 @@
-app.controller('StaticPagesCtrl', ['$scope','$http', function($scope,$http){
+app.controller('StaticPagesCtrl', ['$scope','$http','$auth', function($scope,$http,$auth){
   $scope.message = "Hello World!";
   $scope.services = "No Services";
+  if($auth.authenticate) {
+    loggedIn = true
+  } else {
+    loggedOut = true
+  }
 }]);
