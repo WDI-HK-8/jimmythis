@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20150824134751) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "service_id"
-    t.integer  "seller_id"
     t.integer  "client_id"
   end
 
