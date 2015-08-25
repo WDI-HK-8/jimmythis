@@ -27,8 +27,10 @@ ActiveRecord::Schema.define(version: 20150824134751) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "service_id"
-    t.integer  "client_id"
+    t.integer  "user_id"
   end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "ratings", force: :cascade do |t|
     t.text     "comment"
@@ -36,7 +38,10 @@ ActiveRecord::Schema.define(version: 20150824134751) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "service_id"
+    t.integer  "user_id"
   end
+
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "services", force: :cascade do |t|
     t.string   "title"
@@ -76,5 +81,7 @@ ActiveRecord::Schema.define(version: 20150824134751) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
+  add_foreign_key "orders", "users"
+  add_foreign_key "ratings", "users"
   add_foreign_key "services", "users"
 end
