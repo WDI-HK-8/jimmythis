@@ -1,4 +1,4 @@
-app.controller('LogInCtrl', ['$scope','$auth', function($scope, $auth){
+app.controller('LogInCtrl', ['$scope','$auth', '$location', function($scope, $auth, $location){
   $scope.message = "Login";
 
   $scope.login = function() {
