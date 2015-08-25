@@ -2,9 +2,8 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   
   def create
-    @order = Order.new(order_params,service_id: params[:service_id],client_id: current_user.id)
-    if @order.save
-    else
+    @order = Service.find(params[:service_id]).orders.create(order_params, client_id: current_user.id)
+    unless @order.save
       render json: {message: "400 Bad Request"}, status: :bad_request
     end
   end

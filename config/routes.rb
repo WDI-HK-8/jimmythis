@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   
   root 'static_pages#index'
   
-  get '/users/:id?includes=orders,services', to: 'users#show'
+  get '/users/:id', to: 'users#show'
 
-  resources :services
+  resources :services do
+    resources :orders
+    resources :ratings
+  end
   resources :categories
-
-  post '/services/:service_id/ratings', to: 'ratings#create'
-  post 'services/:service_id/orders', to: 'orders#create'
 
 
 end

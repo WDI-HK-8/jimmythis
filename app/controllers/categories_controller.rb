@@ -5,8 +5,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    if @category.save
-    else
+    unless @category.save
       render json: {message: "400 Bad Request"}, status: :bad_request
     end
   end
