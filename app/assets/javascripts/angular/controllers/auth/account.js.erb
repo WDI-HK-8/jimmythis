@@ -7,9 +7,13 @@ app.controller('AccountCtrl', ['$scope', '$http', '$location', '$auth', function
 
   $auth.validateUser()
     .then(function(response) {
-
+      $scope.loggedIn = true;
       $http.get(url + '/users/' + response.id).success(function(response){
         console.log(response);
+        $scope.updateAccountForm.name = response.name;
+        $scope.updateAccountForm.email = response.email;
+        $scope.updateAccountForm.phone = response.phone;
+        $scope.updateAccountForm.description = response.description;
       });
     })
     .catch(function(resp) {
