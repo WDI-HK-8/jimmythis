@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @services = @user.services
-    @orders = @user.orders
-    @info = {user: @user, services: @services, orders: @orders}
+  end
+
+  def show_orders
+    @orders = User.find(params[:id]).orders
+  end
+
+  def show_services
+    @services = User.find(params[:id]).services
   end
 end

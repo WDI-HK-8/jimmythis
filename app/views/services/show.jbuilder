@@ -8,4 +8,4 @@ json.array! @info.ratings do |rating|
   json.created_at rating.created_at
 end
 
-json.extract! @info.service, :id, :title, :description, :district, :created_at, :category, :updated_at 
+json.extract! @info.service, :title, :description, :district, :created_at, :category, :updated_at 

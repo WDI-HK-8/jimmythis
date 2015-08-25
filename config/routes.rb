@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   
   get '/users/:id', to: 'users#show'
+  get '/users/:id/orders', to: 'users#show_orders'
+  get '/users/:id/services', to: 'users#show_services'
 
   resources :services do
     resources :orders

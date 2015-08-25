@@ -11,8 +11,20 @@ app.controller('ServicesIndexCtrl', ['$scope','$auth','$http','$location', funct
   };
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
-  console.log($auth.authenticate)
-  $http.get(url + '/users/' +  + '?includes=orders,services').success(function(response) {
-    $scope.services = response.services;
-  });
+  $auth.validateUser()
+    .then(function(resp) {
+      $scope.loggedIn = true;
+      $http.get(url + '/users/' + resp.id + '/services').success(function(response) {
+        if(response.services) {
+          $scope.services = response.services;
+        } else {
+          $scope.noServices = true
+        }
+      });
+    })
+    .catch(function(resp) {
+      console.log(resp)
+      $location.path('/')
+    });
+  
 }]);
