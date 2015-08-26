@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="services-list col-xs-9" ng-hide="noServices">
-        <div class="row" ng-repeat="service in services" >
+        <div class="row services-items" ng-repeat="service in services" >
           <div class="services-item-details col-xs-12">
             <h4><a href="/#/services/{{ service.id }}">{{ service.title }}</a></h4>
             <p>{{ service.description }}</p>
