@@ -1,4 +1,4 @@
-app.controller('ServicesUpdateCtrl', ['$scope','$auth','$http','$location', function($scope, $auth, $http, $location){
+app.controller('ServicesUpdateCtrl', ['$scope','$auth','$http','$location','$routeParams', function($scope, $auth, $http, $location,$routeParams){
   $scope.message = "Update A Service";
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
@@ -7,7 +7,12 @@ app.controller('ServicesUpdateCtrl', ['$scope','$auth','$http','$location', func
     $location.path('/')
   });
 
-  $http.get(url + '/service/' + $routeParams.id)
+  $http.get(url + '/services/' + $routeParams.id).success(function(response) {
+    $scope.service.title = response.title
+    $scope.service.description = response.description
+    $scope.category = response.category.name
+    $scope.service.district = response.district
+  });
 
   $scope.updateService = function() {
     $http.get(url + '/categories').then(function(resp) {
@@ -16,8 +21,7 @@ app.controller('ServicesUpdateCtrl', ['$scope','$auth','$http','$location', func
           $scope.service.category_id = category.id
         }
       });
-      console.log($scope.service)
-      $http.post(url + '/services',$scope.service).then(function(response) {
+      $http.put(url + '/services/' + $routeParams.id,$scope.service).then(function(response) {
         console.log(response);
         $location.path('/services');
       }).catch(function(response) {
