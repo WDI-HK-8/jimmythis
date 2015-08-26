@@ -1,5 +1,6 @@
 body {
   background-image: url("background_1.png");
+  font-family: 'Lato';
 }
 
 .wrap {
@@ -7,28 +8,30 @@ body {
 }
 
 .navbar {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 8px;
+  padding-bottom: 6px;
   color: white;
   background-color: #4F2815;
   font-family: 'Lato';
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .navbar-brand {
   color: white;
   font-family: 'Courgette';
-  font-size: 40px;
+  font-size: 32px;
 }
 
-.navbar-btn-primary {
+.navbar-nav > li > .navbar-btn-primary {
   color: white;
   border: 1px solid #FFAE00;
   background-color: #FFAE00;
   box-shadow: #E35803 -3px 3px 0;
   margin-top: 6px;
-  margin-left: 30px;
-  font-size: 18px;
+  margin-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 14px;
 }
 
 .navbar-nav > li > .navbar-btn-primary:hover {
@@ -37,24 +40,30 @@ body {
   background-color: #FFAE00;
   box-shadow: #E35803 -3px 3px 0;
   margin-top: 6px;
-  margin-left: 30px;
-  font-size: 18px;
+  margin-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 14px;
 }
 
-.navbar-btn {
+.navbar-nav > li > .navbar-btn {
   color: white;
   background-color: transparent;
   margin-top: 6px;
-  margin-left: 30px;
-  font-size: 18px;
+  margin-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 14px;
 }
 
 .navbar-nav > li > .navbar-btn:hover {
   color: white;
   background-color: transparent;
   margin-top: 6px;
-  margin-left: 30px;
-  font-size: 18px;
+  margin-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 14px;
 }
 
 .intro-message {
@@ -73,9 +82,47 @@ body {
   font-family: 'Lato';
 }
 
+.title-message {
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.title-message h2 {
+  text-shadow: #E35803 -3px 3px 0;
+  font-family: 'Courgette';
+  font-size: 34px;
+}
+
 .main-content {
   background: white;
   border-radius: 8px;
-  min-height: 400px;
   padding: 20px; 
+}
+
+.main-content-small {
+  background: white;
+  border-radius: 8px;
+  padding: 20px; 
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.main-content-medium {
+  background: white;
+  border-radius: 8px;
+  padding: 20px; 
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.category-list h4 a {
+  color: #E35803;
+}
+
+.services-item-details h4 a {
+  color: #4F2815;
+}
+.services-items {
+  border-bottom: 1px solid #D9D9D9;
 }
