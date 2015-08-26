@@ -1,1 +1,1 @@
-json.extract! @info.service, :title, :description, :district, :created_at, :category, :updated_at, ratings, :user_id
+json.extract! @info.service, :title, :description, :district, :created_at, :category, :updated_at, ratings, :user

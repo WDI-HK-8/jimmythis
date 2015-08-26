@@ -28,6 +28,7 @@ class ServicesController < ApplicationController
         render json: {message: "Cannot find service"}, status: :not_found
       end
       @service.update(service_params)
+      render json: {message: "User updated"}, status: :success
     else
       render json: {message: "User not authenticated"}, status: :unauthenticated
     end
@@ -53,6 +54,6 @@ class ServicesController < ApplicationController
 
   private
   def service_params
-    params.require(:service).permit(:title,:description,:district,:category_id)
+    params.require(:service).permit(:title,:description,:district,:category)
   end
 end

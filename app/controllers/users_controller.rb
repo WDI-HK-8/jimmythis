@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def show_services
-    @services = User.find(params[:id]).services
+    @services = User.find(params[:id]).services.includes(:orders)
     render 'show'
   end
 end
