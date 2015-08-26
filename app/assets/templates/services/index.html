@@ -8,17 +8,14 @@
   </div>
   
   <div class="main-content">
-    <a href="/#/services/create" class="btn btn-primary">Add Service</button>
-    <div class="main-content">
-      <div class="container">
-        <div ng-repeat="service in services" ng-hide="noServices">
-          <span>{{ service.title }}</span>{{ service.district }}
-          <button><a href="" class="btn btn-primary">Edit</a></button>
-          <button><a href="" class="btn btn-primary">Delete</a></button>
-        </div>
-        <h4 ng-show="noServices">No Services currently offered</h4>
-      </div>
+    <a href="/#/services/create" class="btn btn-primary">Add Service</a>
+    <div ng-repeat="service in services" ng-hide="noServices">
+      <p>{{ service.title }}</p>
+      <p>{{ service.district }}</p>
+      <a href="/#/" class="btn btn-primary">Edit</a>
+      <a href="/#/" class="btn btn-primary">Delete</a>
     </div>
+    <h4 ng-show="noServices">No Services currently offered</h4>
   </div>
 
 </div>
