@@ -8,6 +8,17 @@ app.controller('ServicesIndexCtrl', ['$scope','$auth','$http','$location', funct
       $http.get(url + '/users/' + resp.id + '/services').success(function(response) {
         if(response.length > 0) {
           $scope.services = response;
+          console.log($scope.services.ratings)
+          $scope.services.forEach(function(service) {
+            if(service.ratings) {
+              var total = 0;
+              service.ratings.forEach(function(rating) {
+                total += rating.grade;
+              });
+              service.averageRating = total/service.ratings.length;
+            } else {service.averageRating = "No ratings"}
+
+          });
         } else {
           $scope.noServices = true
         }
