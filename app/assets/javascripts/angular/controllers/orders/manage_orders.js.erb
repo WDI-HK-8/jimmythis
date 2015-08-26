@@ -11,9 +11,20 @@ app.controller('OrdersIndexCtrl', ['$scope','$auth','$http','$location', functio
           $scope.orders = response;
           $scope.orders.forEach(function(order) {
             if(order.user.id == resp.id) {
-              order.seller = "You";
-              $scope.yours = true;
-            } else {order.seller = order.user.name;}
+              order.seller = order.user.name;
+              order.sellerId = 'You';
+              $http.get(url + '/users/' + order.service.user).success(function(client) {
+                order.client = client.name;
+                order.clientId = client.id;
+                order.contact = order.service.user;
+              });
+            } else {
+              order.seller = 'You';
+              order.client = order.user.name;
+              order.sellerId = resp.id
+              order.clientId = order.user.id;
+              order.contact = order.user.id;
+            }
           });
         } else {
           $scope.noOrders = true
@@ -24,13 +35,5 @@ app.controller('OrdersIndexCtrl', ['$scope','$auth','$http','$location', functio
       console.log(resp)
       $location.path('/')
     });
-
-    $scope.contactInfo = function(id) {
-      $http.get(url + '/users/' + id).success(function(response) {
-        $scope.email = response.email;
-        $scope.phone = response.phone;
-        $('modal').toggle()
-      });
-    };
   
 }]);
