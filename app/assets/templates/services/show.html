@@ -2,7 +2,7 @@
 
   <div class="title-message">
       <h2>{{ message }}</h2>
-      <h3>In {{ service.category.name }}</h3>
+      <h3>In <a href="/#/categories/{{ service.category.id }}">{{ service.category.name }}</a></h3>
   </div>
   
   <div class="main-content">
@@ -22,6 +22,13 @@
     <div class="row">
       <div class="col-xs-12">
         <h4>Reviews</h4>
+        <div class="row" ng-repeat="rating in service.ratings" >
+          <div class="ratings-item-details col-xs-12">
+            <a href="/#/profile/{{ rating.user_id }}">User: {{ rating.user_id }}</a>
+            <p>{{ rating.comment }}</p>
+            <p>Rating: {{ rating.grade }} | Created on: {{ rating.created_at | date:"dd/MM/yyyy" }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
