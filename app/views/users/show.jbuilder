@@ -4,6 +4,7 @@ if @orders
     json.status order.status
     json.created_at order.created_at
     json.service order.service
+    json.user order.user
   end
 elsif @services
   json.array! @services do |service|

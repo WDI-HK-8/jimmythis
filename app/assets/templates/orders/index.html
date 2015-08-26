@@ -1,0 +1,32 @@
+<div class="container-fluid wrap">
+
+  <div class="title-message">
+      <h2>{{ message }}</h2>
+  </div>
+  
+  <div class="main-content">
+    <div ng-repeat="order in orders" ng-hide="noOrders">
+      <h4>{{ order.service.title }}</h4>
+      <p>{{ order.service.description }}
+      <p>Status: {{ order.status }} | Created on: {{ order.created_at | date:"dd/MM/yyyy" }} | Seller: <a href="/#/profile/{{ order.user.id }}">{{ order.seller }}</a></p>
+      <a href="/#/contact" class="btn btn-primary" ng-hide="yours">Contact</a>
+    </div>
+    <h4 ng-show="noOrders">No Orders currently offered</h4>
+  </div>
+
+</div>
+
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Contact Info</h4>
+      </div>
+      <div class="modal-body">
+        <p>Email: {{ email }}</p>
+        <p>Phone: {{ phone }}</p>
+      </div>
+    </div>
+  </div>
+</div>

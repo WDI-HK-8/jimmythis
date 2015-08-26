@@ -1,4 +1,4 @@
-app.controller('ProfileCtrl', ['$scope', '$http', '$location', '$auth', function($scope, $http, $location, $auth){
+app.controller('ProfileCtrl', ['$scope', '$http', '$location', '$auth','$routeParams', function($scope, $http, $location, $auth,$routeParams){
 
   $scope.message = "Public Profile";
 
@@ -7,16 +7,20 @@ app.controller('ProfileCtrl', ['$scope', '$http', '$location', '$auth', function
   $auth.validateUser()
     .then(function(response) {
       $scope.loggedIn = true;
-      $http.get(url + '/users/' + response.id).success(function(response) {
-        
+      $http.get(url + '/users/' + $routeParams.id).success(function(response) {
+        console.log(response)
         $scope.profile = response;
         
         if (!response.image) {
           $scope.profile.image = "<%= image_url("default_picture.png") %>"
         }
-        if (!response.services) {
-          $scope.noServices = true;
-        }
+        $http.get(url + '/users/' + $routeParams.id + '/services').success(function(response) {
+          if (response.length > 0) {
+            $scope.services = response
+          } else {
+            $scope.noServices = true;
+          }
+        })
       });
     })
     .catch(function(response) {

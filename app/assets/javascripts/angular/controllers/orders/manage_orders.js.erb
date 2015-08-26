@@ -1,0 +1,36 @@
+app.controller('OrdersIndexCtrl', ['$scope','$auth','$http','$location', function($scope, $auth, $http, $location){
+  $scope.message = "Manage Orders";
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  $auth.validateUser()
+    .then(function(resp) {
+      $scope.loggedIn = true;
+      $http.get(url + '/users/' + resp.id + '/orders').success(function(response) {
+        console.log(response)
+        if(response.length > 0) {
+          $scope.orders = response;
+          $scope.orders.forEach(function(order) {
+            if(order.user.id == resp.id) {
+              order.seller = "You";
+              $scope.yours = true;
+            } else {order.seller = order.user.name;}
+          });
+        } else {
+          $scope.noOrders = true
+        }
+      });
+    })
+    .catch(function(resp) {
+      console.log(resp)
+      $location.path('/')
+    });
+
+    $scope.contactInfo = function(id) {
+      $http.get(url + '/users/' + id).success(function(response) {
+        $scope.email = response.email;
+        $scope.phone = response.phone;
+        $('modal').toggle()
+      });
+    };
+  
+}]);

@@ -17,8 +17,10 @@
     <div class="row">
       <h3>Services</h3>
       <div class="services-list">
-        <div ng-repeat="service in profile.services" ng-hide="noServices">
-          <span>{{ service.title }}</span>{{ service.district }}
+        <div ng-repeat="service in services" ng-hide="noServices">
+          <h4><a href="/#/services/{{ service.id }}">{{ service.title }}</a></h4>
+          <p>{{ service.description }}
+          <p>Rating: {{ service.average_rating }} | Created on: {{ service.created_at | date:"dd/MM/yyyy" }} | District: {{ service.district }} | Category: {{ service.category.name }}</p>
         </div>
         <p ng-show="noServices">No Services currently offered</p>
       </div>
