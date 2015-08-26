@@ -12,7 +12,7 @@ app.controller('ProfileCtrl', ['$scope', '$http', '$location', '$auth', function
         $scope.profile = response;
         
         if (!response.image) {
-          $scope.profile.image = "https://lh3.googleusercontent.com/-hoI3rXz7oy0/AAAAAAAAAAI/AAAAAAAAAAA/UBf8PfFVAsQ/photo.jpg"
+          $scope.profile.image = "<%= image_url("default_picture.png") %>"
         }
         if (!response.services) {
           $scope.noServices = true;
