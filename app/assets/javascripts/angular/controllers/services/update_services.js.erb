@@ -1,0 +1,29 @@
+app.controller('ServicesUpdateCtrl', ['$scope','$auth','$http','$location', function($scope, $auth, $http, $location){
+  $scope.message = "Update A Service";
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  $auth.validateUser().catch(function(resp) {
+    console.log(resp)
+    $location.path('/')
+  });
+
+  $http.get(url + '/service/' + $routeParams.id)
+
+  $scope.updateService = function() {
+    $http.get(url + '/categories').then(function(resp) {
+      resp.data.forEach(function(category) {
+        if(category.name == $scope.category) {
+          $scope.service.category_id = category.id
+        }
+      });
+      console.log($scope.service)
+      $http.post(url + '/services',$scope.service).then(function(response) {
+        console.log(response);
+        $location.path('/services');
+      }).catch(function(response) {
+        console.log(response);
+      });
+    });
+  }
+  
+}]);

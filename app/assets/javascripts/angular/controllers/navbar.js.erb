@@ -4,7 +4,6 @@ app.controller('NavbarCtrl', ['$scope', '$auth', '$location','$route', function(
   $auth.validateUser()
     .then(function(resp) {
       $scope.loggedIn  = true;
-      $scope.userId = resp.id;
     })
     .catch(function(resp) {
       $scope.loggedIn  = false;
@@ -14,7 +13,6 @@ app.controller('NavbarCtrl', ['$scope', '$auth', '$location','$route', function(
     $auth.signOut().then(function(response) {
       console.log(response);
       $location.path('/');
-      $route.reload();
     }).catch(function(response) {
       console.log(response);
     });

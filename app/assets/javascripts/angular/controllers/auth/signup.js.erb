@@ -7,6 +7,7 @@ app.controller('SignUpCtrl', ['$scope','$auth','$location', function($scope, $au
     $auth.submitRegistration($scope.registrationForm).
       then(function(response){
         console.log(response);
+        $route.reload();
         $location.path('/');
       }).
       catch(function(response){

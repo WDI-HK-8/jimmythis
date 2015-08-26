@@ -33,6 +33,10 @@ app.config(['$routeProvider','$authProvider', function($routeProvider, $authProv
     when('/categories/:id', {
       templateUrl: "<%= asset_path('categories/show.html') %>",
       controller: 'CategoryShowCtrl'
+    }).
+    when('/services/update', {
+      templateUrl: "<%= asset_path('services/update.html') %>",
+      controller: 'ServicesUpdateCtrl'
     })
 
   $authProvider.configure({
