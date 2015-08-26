@@ -13,17 +13,19 @@ districts = ["sheung wan","central","wong chuk hang","stanley","mong kok"]
 category = Category.new(name: 'Funny')
 category.save
 
-
+user = User.new(name: "stacy", email: "stacy@gmail.com", password: "stacy12345", description: "Stacy's new description", phone: 12345678)
+user.save
 
 names.each do |name|
-  user = User.new(name: name,email: name+'@gmail.com',password: name+'12345',description: name+'\'s new description',phone: 12345678)
+  user = User.new(name: name, email: "#{name}@gmail.com", password: "#{name}12345", description: "#{name}\'s new description", phone: 12345678)
+  
   if user.save
-    service = Service.new(title: titles[names.index(name)],district: districts[names.index(name)],description: titles[names.index(name)]+' for only $50!!',seller: User.find(names.index(name)).id,category_id: category.id)
+    service = user.services.new(title: titles[names.index(name)],district: districts[names.index(name)],description: titles[names.index(name)]+' for only $50!!', category_id: category.id)
     if service.save
-      user = User.find(user.id-1)
-      rating = Service.find(names.index(name)).ratings.create(comment: 'I liked it!!', grade: 8, client: user.id)
+      user = User.find(names.index(name)+1)
+      rating = service.ratings.create(comment: 'I liked it!!', grade: 8, user_id: user.id)
       if rating.save
-        order = Service.find(names.index(name)).ratings.create(status: 'almost done', client: user.id)
+        order = service.orders.create(status: 'almost done', user_id: user.id)
         order.save
       end
     end

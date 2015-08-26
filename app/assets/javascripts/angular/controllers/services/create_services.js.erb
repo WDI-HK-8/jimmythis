@@ -1,5 +1,5 @@
-app.controller('ServicesIndexCtrl', ['$scope','$auth','$http','$location', function($scope, $auth, $http, $location){
-  $scope.message = "Manage Services";
+app.controller('ServicesCreateCtrl', ['$scope','$auth','$http','$location', function($scope, $auth, $http, $location){
+  $scope.message = "Create A Service";
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
   $auth.validateUser()
