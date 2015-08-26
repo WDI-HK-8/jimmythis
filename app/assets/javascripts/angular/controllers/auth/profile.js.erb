@@ -4,28 +4,20 @@ app.controller('ProfileCtrl', ['$scope', '$http', '$location', '$auth','$routePa
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
 
-  $auth.validateUser()
-    .then(function(response) {
-      $scope.loggedIn = true;
-      $http.get(url + '/users/' + $routeParams.id).success(function(response) {
-        console.log(response)
-        $scope.profile = response;
-        
-        if (!response.image) {
-          $scope.profile.image = "<%= image_url("default_picture.png") %>"
-        }
-        $http.get(url + '/users/' + $routeParams.id + '/services').success(function(response) {
-          if (response.length > 0) {
-            $scope.services = response
-          } else {
-            $scope.noServices = true;
-          }
-        })
-      });
+  $http.get(url + '/users/' + $routeParams.id).success(function(response) {
+    console.log(response)
+    $scope.profile = response;
+    
+    if (!response.image) {
+      $scope.profile.image = "<%= image_url("default_picture.png") %>"
+    }
+    $http.get(url + '/users/' + $routeParams.id + '/services').success(function(response) {
+      if (response.length > 0) {
+        $scope.services = response
+      } else {
+        $scope.noServices = true;
+      }
     })
-    .catch(function(response) {
-      console.log(response)
-      $location.path('/')
-    });
+  });
 
 }]);
