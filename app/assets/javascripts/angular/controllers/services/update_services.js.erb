@@ -29,5 +29,14 @@ app.controller('ServicesUpdateCtrl', ['$scope','$auth','$http','$location','$rou
       });
     });
   }
+
+  $scope.deleteService = function() {
+    $http.delete(url + '/services/' + $routeParams.id).then(function(response) {
+      console.log(response)
+      $location.path('/services');
+    }).catch(function(response) {
+        console.log(response);
+    });
+  }
   
 }]);
