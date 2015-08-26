@@ -7,9 +7,6 @@ class RatingsController < ApplicationController
     unless @rating.save
       render json: {message: "400 Bad Request"}, status: :bad_request
     end
-    average_grade = Rating.where(service_id: params[:service_id]).average(:grade)
-    Service.update(params[:service_id],average_grade: average_grade)
-
   end
 
   private 

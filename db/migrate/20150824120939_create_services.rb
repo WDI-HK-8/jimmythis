@@ -4,7 +4,6 @@ class CreateServices < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.string :district
-      t.integer :average_grade
       
       t.timestamps null: false
     end

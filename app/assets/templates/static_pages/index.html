@@ -9,11 +9,19 @@
   
   <div class="main-content">
     <div class="row">
-      <div class="category-list col-xs-4">
-        <h3>Categories</h3>
+      <div class="category-list col-xs-3">
+        <div class="row text-center" ng-repeat="category in categories">
+          <h5><a href="/#/categories/{{ category.id }}">{{ category.name }}</a></h5>
+        </div>
       </div>
-      <div class="services-list col-xs-8">
-        <h3>Services</h3>
+      <div class="services-list col-xs-9" ng-hide="noServices">
+        <div class="row" ng-repeat="service in services" >
+          <div class="services-item-details col-xs-12">
+            <h4><a href="/#/services/{{ service.id }}">{{ service.title }}</a></h4>
+            <p>{{ service.description }}</p>
+            <p>Ratings: {{ service.grade }} | Created on: {{ service.created_at | date:"dd/MM/yyyy" }} | District: {{ service.district }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

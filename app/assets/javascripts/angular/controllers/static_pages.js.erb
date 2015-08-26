@@ -1,4 +1,23 @@
 app.controller('StaticPagesCtrl', ['$scope','$http','$auth','$location','$route', function($scope,$http,$auth,$location,$route){
   
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+
+  $http.get(url + '/services').success(function(response) {
+    console.log(response)
+    if(response) {
+      $scope.services = response;
+    } else {
+      $scope.noServices = true
+    }
+  });
+
+  $http.get(url + '/categories').success(function(response) {
+    console.log(response)
+    if(response) {
+      $scope.categories = response;
+    } else {
+      $scope.noCategories = true
+    }
+  });
 
 }]);
