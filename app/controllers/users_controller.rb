@@ -10,6 +10,9 @@ class UsersController < ApplicationController
 
   def show_services
     @services = User.find(params[:id]).services.includes(:orders)
+    @services.each do |service|
+      service.average_rating
+    end
     render 'show'
   end
 end

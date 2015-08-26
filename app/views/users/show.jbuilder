@@ -15,6 +15,7 @@ elsif @services
     json.created_at service.created_at
     json.user service.user
     json.orders service.orders
+    json.average_rating service.average_rating
   end
 else
   json.id @user.id

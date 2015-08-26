@@ -15,6 +15,9 @@ class CategoriesController < ApplicationController
     if @services.nil?
       render json: {message: "Cannot find category or category has no services"}, status: :not_found
     end
+    @services.each do |service|
+      service.average_rating
+    end
   end
 
   def update
