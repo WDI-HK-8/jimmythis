@@ -11,6 +11,7 @@ Jimmy This is a first platform to buy and sell local services in Hong Kong for H
 - <tt>$ bundle install</tt>
 - <tt>$ rake db:create</tt>
 - <tt>$ rake db:migrate</tt>
+- <tt>$ rake db:seed</tt>
 - <tt>$ bower install</tt>
 - <tt>$ rails server</tt>
 
