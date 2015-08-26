@@ -1,8 +1,9 @@
-app.controller('NavbarCtrl', ['$scope', '$auth', '$location','$route', function($scope, $auth, $location,$route){
+app.controller('NavbarCtrl', ['$scope', '$auth', '$location','$window', function($scope, $auth, $location,$window){
 
 
   $auth.validateUser()
     .then(function(resp) {
+      $scope.userId = resp.id
       $scope.loggedIn  = true;
     })
     .catch(function(resp) {
@@ -13,6 +14,7 @@ app.controller('NavbarCtrl', ['$scope', '$auth', '$location','$route', function(
     $auth.signOut().then(function(response) {
       console.log(response);
       $location.path('/');
+      $window.location.href = '/';
     }).catch(function(response) {
       console.log(response);
     });

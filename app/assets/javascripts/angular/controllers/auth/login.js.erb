@@ -1,10 +1,10 @@
-app.controller('LogInCtrl', ['$scope','$auth', '$location', function($scope, $auth, $location){
+app.controller('LogInCtrl', ['$scope','$auth', '$location', '$window', function($scope, $auth, $location, $window){
   $scope.message = "Login";
-
+  
   $scope.login = function() {
     $auth.submitLogin($scope.loginForm).then(function(response) {
       console.log(response);
-      $location.path('/');
+      $window.location.href = '/';
     }).catch(function(response) {
       console.log(response);
     });
