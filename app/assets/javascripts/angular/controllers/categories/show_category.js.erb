@@ -1,0 +1,41 @@
+app.controller('CategoryShowCtrl', ['$scope','$http','$auth','$location','$routeParams', function($scope,$http,$auth,$location,$routeParams){
+  
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+
+  $http.get(url + '/categories/' + $routeParams.id).success(function(response) {
+    console.log(response);
+
+    if(response.length > 0) {
+      $scope.services = response;
+      $scope.services.forEach(function(service) {
+        if(service.ratings.length > 0) {
+          var total = 0;
+          service.ratings.forEach(function(rating) {
+            total += rating.grade;
+          });
+          service.averageRating = total/service.ratings.length;
+        } else {
+          service.averageRating = "No ratings"
+        }
+      });
+
+    } else {
+      $scope.noServices = true;
+    }
+  });
+
+  $http.get(url + '/categories').success(function(response) {
+    console.log(response)
+    if(response) {
+      $scope.categories = response;
+      $scope.categories.forEach(function(category){
+        if (category.id == $routeParams.id) {
+          $scope.message = category.name;
+        }
+      });
+    } else {
+      $scope.noCategories = true;
+    }
+  });
+
+}]);
