@@ -7,17 +7,6 @@ app.controller('CategoryShowCtrl', ['$scope','$http','$auth','$location','$route
 
     if(response.length > 0) {
       $scope.services = response;
-      $scope.services.forEach(function(service) {
-        if(service.ratings.length > 0) {
-          var total = 0;
-          service.ratings.forEach(function(rating) {
-            total += rating.grade;
-          });
-          service.averageRating = total/service.ratings.length;
-        } else {
-          service.averageRating = "No ratings"
-        }
-      });
 
     } else {
       $scope.noServices = true;

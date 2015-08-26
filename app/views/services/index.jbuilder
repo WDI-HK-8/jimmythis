@@ -7,4 +7,5 @@ json.array! @services do |service|
   json.created_at service.created_at
   json.user service.user
   json.ratings service.ratings
+  json.average_rating service.average_rating
 end 

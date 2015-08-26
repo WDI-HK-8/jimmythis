@@ -1,6 +1,10 @@
 class ServicesController < ApplicationController
   def index
     @services = Service.all.includes(:ratings)
+    @avgs = []
+    @services.each do |service|
+      service.average_rating
+    end
   end
 
   def create

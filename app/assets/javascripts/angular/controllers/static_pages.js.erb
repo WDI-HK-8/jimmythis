@@ -7,15 +7,6 @@ app.controller('StaticPagesCtrl', ['$scope','$http','$auth','$location','$route'
 
     if(response) {
       $scope.services = response;
-      $scope.services.forEach(function(service) {
-        
-        var total = 0;
-        service.ratings.forEach(function(rating) {
-          total += rating.grade;
-        });
-        service.averageRating = total/service.ratings.length
-        
-      });
 
     } else {
       $scope.noServices = true;
