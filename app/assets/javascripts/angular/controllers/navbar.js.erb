@@ -13,7 +13,6 @@ app.controller('NavbarCtrl', ['$scope', '$auth', '$location','$window', function
     $scope.logout = function() {
     $auth.signOut().then(function(response) {
       console.log(response);
-      $location.path('/');
       $window.location.href = '/';
     }).catch(function(response) {
       console.log(response);
