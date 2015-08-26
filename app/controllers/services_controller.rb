@@ -5,7 +5,7 @@ class ServicesController < ApplicationController
 
   def create
     if user_signed_in?
-      @service = Service.new(service_params,user_id: current_user.id)
+      @service = current_user.services.new(service_params)
       unless @service.save
         render json: {message: "400 Bad Request"}, status: :bad_request
       end

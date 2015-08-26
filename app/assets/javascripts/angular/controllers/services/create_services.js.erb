@@ -8,7 +8,15 @@ app.controller('ServicesCreateCtrl', ['$scope','$auth','$http','$location', func
   });
 
   $scope.addService = function() {
-    $http.get(url + '/categories')
+    $http.get(url + '/categories').then(function(response) {
+      response.data.forEach(function(object) {
+        console.log([$scope.category,object.name])
+        if(object.name == $scope.category) {
+          $scope.service.category_id = object.id
+          console.log($scope.service)
+        }
+      });
+    });
     $http.post(url + '/services',$scope.service).then(function(response) {
       console.log(response);
       $location.path('/services');
