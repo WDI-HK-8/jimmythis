@@ -15,11 +15,10 @@ class ServicesController < ApplicationController
   end
 
   def show
-    @service = Service.find(params[:id])
+    @service = Service.find(params[:id]).includes(:ratings)
     if @service.nil?
       render json: {message: "Cannot find service"}, status: :not_found
     end
-    @info = {service: @service, seller: User.where(id: @service.user_id), ratings: Rating.where(service_id: params[:id])}
   end
 
   def update
