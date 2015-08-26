@@ -1,6 +1,17 @@
 body {
   background-image: url("background_1.png");
   font-family: 'Lato';
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+a, a:focus, a:active {
+  color: #E35803;
+}
+
+a:hover {
+  color: #FE700F;
+  text-decoration: none;
 }
 
 .wrap {
@@ -16,7 +27,7 @@ body {
   font-size: 14px;
 }
 
-.navbar-brand {
+.navbar-brand, .navbar-brand:hover, .navbar-brand:focus {
   color: white;
   font-family: 'Courgette';
   font-size: 32px;
@@ -66,6 +77,11 @@ body {
   font-size: 14px;
 }
 
+.nav > li > a:hover, .nav > li > a:focus, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  background-color: transparent;
+}
+
+
 .intro-message {
   color: white;
   padding-top: 40px;
@@ -82,7 +98,7 @@ body {
   font-family: 'Lato';
 }
 
-.title-message {
+.title-message, .title-message a {
   color: white;
   padding-top: 20px;
   padding-bottom: 30px;
@@ -122,7 +138,24 @@ body {
 
 .services-item-details h4 a {
   color: #4F2815;
+  font-weight: 700;
 }
+
+
 .services-items {
   border-bottom: 1px solid #D9D9D9;
+}
+
+.services-items:hover {
+  border-bottom: 1px solid #D9D9D9;
+  background-color: #F7F7F7;
+}
+
+.services-item-price h4 {
+  color: green;
+}
+
+.services-item-details-mini {
+  color: #999999;
+  font-size: 12px;
 }
