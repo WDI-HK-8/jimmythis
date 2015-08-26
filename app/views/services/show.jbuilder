@@ -6,3 +6,4 @@ json.category @service.category
 json.updated_at @service.updated_at
 json.ratings @service.ratings
 json.user @service.user
+json.average_rating @service.average_rating

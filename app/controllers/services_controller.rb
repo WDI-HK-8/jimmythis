@@ -23,6 +23,7 @@ class ServicesController < ApplicationController
     if @service.nil?
       render json: {message: "Cannot find service"}, status: :not_found
     end
+    @service.average_rating
   end
 
   def update

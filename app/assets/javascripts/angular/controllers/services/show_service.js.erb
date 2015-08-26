@@ -1,0 +1,11 @@
+app.controller('ServiceShowCtrl', ['$scope','$auth','$http','$location','$routeParams', function($scope, $auth, $http, $location, $routeParams){
+  $scope.message = "Service description";
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+
+  $http.get(url + '/services/' + $routeParams.id).success(function(response) {
+    console.log(response)
+    $scope.service = response;
+  });
+  
+}]);

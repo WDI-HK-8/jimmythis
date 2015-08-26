@@ -37,6 +37,10 @@ app.config(['$routeProvider','$authProvider', function($routeProvider, $authProv
     when('/services/update/:id', {
       templateUrl: "<%= asset_path('services/update.html') %>",
       controller: 'ServicesUpdateCtrl'
+    }).
+    when('/services/:id', {
+      templateUrl: "<%= asset_path('services/show.html') %>",
+      controller: 'ServiceShowCtrl'
     })
 
   $authProvider.configure({
