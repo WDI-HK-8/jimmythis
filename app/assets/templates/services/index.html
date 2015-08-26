@@ -12,6 +12,7 @@
     <div ng-repeat="service in services" ng-hide="noServices">
       <p>{{ service.title }}</p>
       <p>{{ service.district }}</p>
+      <p>{{ service.category.name }}</p>
       <a href="/#/services/edit" class="btn btn-primary">Edit</a>
       <a href="/#/services/edit#anchor" class="btn btn-primary">Delete</a>
     </div>
