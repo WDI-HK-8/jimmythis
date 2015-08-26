@@ -2,20 +2,19 @@ app.controller('ServicesCreateCtrl', ['$scope','$auth','$http','$location', func
   $scope.message = "Create A Service";
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
-  $auth.validateUser()
-    .then(function(resp) {
-      $scope.loggedIn = true;
-      $http.get(url + '/users/' + resp.id + '/services').success(function(response) {
-        if(response.services) {
-          $scope.services = response.services;
-        } else {
-          $scope.noServices = true
-        }
-      });
-    })
-    .catch(function(resp) {
-      console.log(resp)
-      $location.path('/')
+  $auth.validateUser().catch(function(resp) {
+    console.log(resp)
+    $location.path('/')
+  });
+
+  $scope.addService = function() {
+    $http.get(url + '/categories')
+    $http.post(url + '/services',$scope.service).then(function(response) {
+      console.log(response);
+      $location.path('/services');
+    }).catch(function(response) {
+      console.log(response);
     });
+  }
   
 }]);
