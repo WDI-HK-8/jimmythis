@@ -1,5 +1,5 @@
-json.id = @service.id
-json.title @service.title
-json.description @service.description
-json.district @service.district
-json.category_id @service.category_id 
+json.id = @rating.id
+json.grade @rating.grade
+json.comment @rating.comment
+json.user @rating.user
+json.service @rating.service

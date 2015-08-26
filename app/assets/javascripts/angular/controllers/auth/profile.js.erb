@@ -1,0 +1,27 @@
+app.controller('ProfileCtrl', ['$scope', '$http', '$location', '$auth', function($scope, $http, $location, $auth){
+
+  $scope.message = "Public Profile";
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+
+  $auth.validateUser()
+    .then(function(response) {
+      $scope.loggedIn = true;
+      $http.get(url + '/users/' + response.id).success(function(response) {
+        
+        $scope.profile = response;
+        
+        if (!response.image) {
+          $scope.profile.image = "<%= image_url("default_picture.png") %>"
+        }
+        if (!response.services) {
+          $scope.noServices = true;
+        }
+      });
+    })
+    .catch(function(response) {
+      console.log(response)
+      $location.path('/')
+    });
+
+}]);

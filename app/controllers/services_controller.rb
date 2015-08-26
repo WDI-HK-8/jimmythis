@@ -1,11 +1,15 @@
 class ServicesController < ApplicationController
   def index
-    @services = Service.all
+    @services = Service.all.includes(:ratings)
+    @avgs = []
+    @services.each do |service|
+      service.average_rating
+    end
   end
 
   def create
     if user_signed_in?
-      @service = Service.new(service_params,user_id: current_user.id)
+      @service = current_user.services.new(service_params)
       unless @service.save
         render json: {message: "400 Bad Request"}, status: :bad_request
       end
@@ -15,11 +19,10 @@ class ServicesController < ApplicationController
   end
 
   def show
-    @service = Service.find(params[:id])
+    @service = Service.find(params[:id]).includes(:ratings)
     if @service.nil?
       render json: {message: "Cannot find service"}, status: :not_found
     end
-    @info = {service: @service, seller: User.where(id: @service.user_id), ratings: Rating.where(service_id: params[:id])}
   end
 
   def update
@@ -29,6 +32,7 @@ class ServicesController < ApplicationController
         render json: {message: "Cannot find service"}, status: :not_found
       end
       @service.update(service_params)
+      render json: {message: "User updated"}, status: :success
     else
       render json: {message: "User not authenticated"}, status: :unauthenticated
     end

@@ -1,3 +1,81 @@
+body {
+  background-image: url("background_1.png");
+}
+
 .wrap {
   max-width: 960px;
+}
+
+.navbar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+  background-color: #4F2815;
+  font-family: 'Lato';
+  font-size: 18px;
+}
+
+.navbar-brand {
+  color: white;
+  font-family: 'Courgette';
+  font-size: 40px;
+}
+
+.navbar-btn-primary {
+  color: white;
+  border: 1px solid #FFAE00;
+  background-color: #FFAE00;
+  box-shadow: #E35803 -3px 3px 0;
+  margin-top: 6px;
+  margin-left: 30px;
+  font-size: 18px;
+}
+
+.navbar-nav > li > .navbar-btn-primary:hover {
+  color: white;
+  border: 1px solid #FFAE00;
+  background-color: #FFAE00;
+  box-shadow: #E35803 -3px 3px 0;
+  margin-top: 6px;
+  margin-left: 30px;
+  font-size: 18px;
+}
+
+.navbar-btn {
+  color: white;
+  background-color: transparent;
+  margin-top: 6px;
+  margin-left: 30px;
+  font-size: 18px;
+}
+
+.navbar-nav > li > .navbar-btn:hover {
+  color: white;
+  background-color: transparent;
+  margin-top: 6px;
+  margin-left: 30px;
+  font-size: 18px;
+}
+
+.intro-message {
+  color: white;
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+.intro-message h2 {
+  text-shadow: #E35803 -3px 3px 0;
+  font-family: 'Courgette';
+  font-size: 34px;
+}
+
+.intro-message h3 {
+  font-family: 'Lato';
+}
+
+.main-content {
+  background: white;
+  border-radius: 8px;
+  min-height: 400px;
+  padding: 20px; 
 }

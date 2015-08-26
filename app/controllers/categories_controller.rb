@@ -11,9 +11,12 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @services = Service.where(category: params[:id])
+    @services = Category.find(params[:id]).services.includes(:ratings)
     if @services.nil?
       render json: {message: "Cannot find category or category has no services"}, status: :not_found
+    end
+    @services.each do |service|
+      service.average_rating
     end
   end
 

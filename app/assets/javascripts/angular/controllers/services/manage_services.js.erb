@@ -1,22 +1,13 @@
 app.controller('ServicesIndexCtrl', ['$scope','$auth','$http','$location', function($scope, $auth, $http, $location){
   $scope.message = "Manage Services";
 
-  $scope.logout = function() {
-    $auth.signOut().then(function(response) {
-      console.log(response);
-      $location.path('/')
-    }).catch(function(response) {
-      console.log(response);
-    });
-  };
-
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
   $auth.validateUser()
     .then(function(resp) {
       $scope.loggedIn = true;
       $http.get(url + '/users/' + resp.id + '/services').success(function(response) {
-        if(response.services) {
-          $scope.services = response.services;
+        if(response.length > 0) {
+          $scope.services = response;
         } else {
           $scope.noServices = true
         }

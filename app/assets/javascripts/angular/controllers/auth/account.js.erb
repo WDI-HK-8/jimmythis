@@ -20,15 +20,15 @@ app.controller('AccountCtrl', ['$scope', '$http', '$location', '$auth', function
       $location.path('/');
     });
 
-  // $scope.updateAccount = function() {
-  //   $auth.updateAccount($scope.updateAccountForm)
-  //     .then(function(resp) {
-  //       console.log(response);
-  //       $location.path('/');
-  //     })
-  //     .catch(function(resp) {
-  //       console.log(response);
-  //     });
-  // };
+  $scope.updateAccount = function() {
+    $auth.updateAccount($scope.updateAccountForm)
+      .then(function(response) {
+        console.log(response);
+        $location.path('/');
+      })
+      .catch(function(response) {
+        console.log(response);
+      });
+  };
 
 }]);

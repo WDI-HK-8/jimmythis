@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824134751) do
+ActiveRecord::Schema.define(version: 20150824134056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,28 +24,33 @@ ActiveRecord::Schema.define(version: 20150824134751) do
 
   create_table "orders", force: :cascade do |t|
     t.string   "status"
+    t.integer  "service_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "service_id"
-    t.integer  "client_id"
   end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "ratings", force: :cascade do |t|
     t.text     "comment"
     t.integer  "grade"
+    t.integer  "service_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "service_id"
   end
+
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "services", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "district"
+    t.integer  "user_id"
+    t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "category_id"
-    t.integer  "user_id"
   end
 
   add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
@@ -76,5 +81,7 @@ ActiveRecord::Schema.define(version: 20150824134751) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
+  add_foreign_key "orders", "users"
+  add_foreign_key "ratings", "users"
   add_foreign_key "services", "users"
 end

@@ -1,39 +1,15 @@
-<nav class="navbar">
-  <div class="container-fluid wrap">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/#/">Jimmy This</a>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="loggedIn"><a href="/#/login">Log In</a></li>
-        <li ng-hide="loggedIn"><a href="/#/signup" class="btn btn-primary">Join Today</a></li>
-        <li class="dropdown" ng-show="loggedIn">
-          <a href="/#/account" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged In <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/#/account">Account</a></li>
-            <li><a href="/#/services">Services</a></li>
-            <li><a href="/#/" ng-click="logout()">Log Out</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div> 
-  </div>
-</nav>
 <div class="container-fluid wrap">
-  <div class="row">
 
-    <h1>{{ message }}</h1>
+  <div class="intro-message text-center">
+      <h2>{{ message }}</h2>
+      <h3>Update your settings carefully.</h3>
+  </div>
 
+  <div class="main-content">
     <form ng-submit="updateAccount()">
       <div class="form-group">
         <label>Name</label>
-        <input type="text" name="name" ng-model="updateAccountForm.name" required="required" class="form-control" placholder="{{ name }}">
+        <input type="text" name="name" ng-model="updateAccountForm.name" required="required" class="form-control">
       </div>
       <div class="form-group">
         <label>Email</label>
@@ -41,15 +17,23 @@
       </div>
       <div class="form-group">
         <label>Phone</label>
-        <input type="text" name="phone" ng-model="updateAccountForm.phone" required="required" class="form-control">
+        <input type="text" name="phone" ng-model="updateAccountForm.phone" class="form-control">
       </div>
       <div class="form-group">
         <label>Description</label>
-        <textarea type="text" name="description" ng-model="updateAccountForm.description" required="required" class="form-control"></textarea>
+        <textarea type="text" name="description" ng-model="updateAccountForm.description" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label>New Password</label>
+        <input type="password" name="password" ng-model="updateAccountForm.password" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>New Password Confirmation</label>
+        <input type="password" name="password_confirmation" ng-model="updateAccountForm.password_confirmation" class="form-control">
       </div>
       <button type="submit" class="btn btn-primary">Save</button>
       <a href="/#/" class="btn btn-danger">Cancel</a>
     </form>
-    
   </div>
+
 </div>

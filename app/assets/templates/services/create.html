@@ -1,0 +1,70 @@
+<div class="container-fluid wrap">
+
+  <div class="intro-message text-center">
+      <h2>{{ message }}</h2>
+      <h3>Create your new service here!</h3>
+  </div>
+  
+  <div class="main-content">
+    <form ng-submit="addService()" ng-init="service = {}">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="title" ng-model="service.title" required="required" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>District</label>
+        <select class="form-control" ng-model="service.district" required="required">
+          <option>Central</option>
+          <option>Eastern</option>
+          <option>Kowloon City</option>
+          <option>Kwai Tsing</option>
+          <option>North Point</option>
+          <option>Sai Kung</option>
+          <option>Sha Tin</option>
+          <option>Sham Shui Po</option>
+          <option>Southern</option>
+          <option>Tai Po</option>
+          <option>Tsuen Wan</option>
+          <option>Tuen Mun</option>
+          <option>Yuen Long</option>
+          <option>Wan Chai</option>
+          <option>Wong Tai Sin</option>
+          <option>Yau Tsim Mong</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <select class="form-control" ng-model="category" required="required">
+          <option>Advertising</option>
+          <option>Art & Creative</option>
+          <option>Business</option>
+          <option>Fun & Bizarre</option>
+          <option>Gift Ideas</option>
+          <option>Graphics</option>
+          <option>Health & Wellness</option>
+          <option>Music & Audio</option>
+          <option>Other</option>
+          <option>Photography</option>
+          <option>Programming</option>
+          <option>Social Marketing</option>
+          <option>Technology</option>
+          <option>Tips & Advice</option>
+          <option>Translation Services</option>
+          <option>Video</option>
+          <option>Writing</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea type="text" name="description" ng-model="service.description" class="form-control"></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="/#/services" class="btn btn-danger">Back</a>
+    </form>
+  </div>
+
+</div>
