@@ -3,11 +3,23 @@ app.controller('StaticPagesCtrl', ['$scope','$http','$auth','$location','$route'
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
 
   $http.get(url + '/services').success(function(response) {
-    console.log(response)
+    console.log(response);
+
     if(response) {
       $scope.services = response;
+      $scope.services.forEach(function(service) {
+        var total = 0;
+        service.ratings.forEach(function(rating) {
+          total += rating.grade;
+        });
+        service.averageRating = total/service.ratings.length
+        $http.get(url + '/users/' + service.user_id).success(function(response) {
+          service.userInfo = response;
+        });
+      });
+
     } else {
-      $scope.noServices = true
+      $scope.noServices = true;
     }
   });
 
