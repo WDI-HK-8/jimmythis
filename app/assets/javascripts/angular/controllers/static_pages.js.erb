@@ -1,21 +1,4 @@
 app.controller('StaticPagesCtrl', ['$scope','$http','$auth','$location','$route', function($scope,$http,$auth,$location,$route){
   
-  $auth.validateUser()
-    .then(function(resp) {
-      $scope.loggedIn  = true;
-    })
-    .catch(function(resp) {
-      $scope.loggedIn  = false;
-    });
-
-  $scope.logout = function() {
-    $auth.signOut().then(function(response) {
-      console.log(response);
-      $location.path('/');
-      $route.reload();
-    }).catch(function(response) {
-      console.log(response);
-    });
-  };
 
 }]);

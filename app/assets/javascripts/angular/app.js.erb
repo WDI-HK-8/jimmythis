@@ -25,6 +25,10 @@ app.config(['$routeProvider','$authProvider', function($routeProvider, $authProv
     when('/profile/:id', {
       templateUrl: "<%= asset_path('auth/profile.html') %>",
       controller: 'ProfileCtrl'
+    }).
+    when('/services/create', {
+      templateUrl: "<%= asset_path('auth/profile.html') %>",
+      controller: 'ServicesCreateCtrl'
     })
 
   $authProvider.configure({
