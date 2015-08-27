@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show_orders
-    @orders = User.find(params[:id]).orders
+    @orders = Order.where(user_id: User.find(params[:id])[:id])
     render 'show'
   end
 

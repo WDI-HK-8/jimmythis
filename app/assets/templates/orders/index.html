@@ -5,14 +5,26 @@
   </div>
   
   <div class="main-content">
+    <h3>Your Purchases</h3>
     <div ng-repeat="order in orders" ng-hide="noOrders">
       <h4>{{ order.service.title }}</h4>
       <p>{{ order.service.description }}
-      <p>Status: {{ order.status }} | Created on: {{ order.created_at | date:"dd/MM/yyyy" }} | <span ng-hide="order.hide">Seller: <a href="/#/profile/{{ order.sellerId }}">{{ order.seller }}</a> |</span><span ng-show="order.hide"> Client: <a href="/#/profile/{{ order.clientId }}">{{ order.client }}</a></span></p>
-      <a href="/#/orders/contact/{{ order.contact }}" class="btn btn-primary">Contact</a>
+      <p>Status: {{ order.status }} | Created on: {{ order.created_at | date:"dd/MM/yyyy" }} | Seller: <a href="/#/profile/{{ order.sellerId }}">{{ order.seller }}</a></p>
+      <a href="/#/orders/contact/{{ order.sellerId }}" class="btn btn-primary">Contact</a>
       <a href="/#/services/{{ order.service.id }}/ratings/create" class="btn btn-primary" ng-show="client">Rate Service</a>
     </div>
-    <h4 ng-show="noOrders">No Orders currently offered</h4>
+    <h4 ng-show="noOrders">You have no purchases</h4>
+  </div>
+
+  <div class="main-content">
+    <h3>Your Sales</h3>
+    <div ng-repeat="sale in sales" ng-hide="noSales">
+      <h4>{{ sale.service.title }}</h4>
+      <p>{{ sale.service.description }}
+      <p>Status: {{ sale.status }} | Created on: {{ sale.created_at | date:"dd/MM/yyyy" }} | Client: <a href="/#/profile/{{ sale.clientId }}">{{ sale.client }}</a></p>
+      <a href="/#/orders/contact/{{ sale.clientId }}" class="btn btn-primary">Contact</a>
+    </div>
+    <h4 ng-show="noSales">You have no sales</h4>
   </div>
 
 </div>
