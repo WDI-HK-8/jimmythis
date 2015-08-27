@@ -1,4 +1,4 @@
-app.controller('SignUpCtrl', ['$scope','$auth','$location', function($scope, $auth, $location){
+app.controller('SignUpCtrl', ['$scope','$auth','$location','$window', function($scope, $auth, $location,$window){
   $scope.message = "Signup";
 
   $scope.registrationForm = {};
@@ -7,7 +7,7 @@ app.controller('SignUpCtrl', ['$scope','$auth','$location', function($scope, $au
     $auth.submitRegistration($scope.registrationForm).
       then(function(response){
         console.log(response);
-        $location.path('/');
+        $window.location.href = '/';
       }).
       catch(function(response){
         console.log(response);

@@ -19,10 +19,11 @@ class ServicesController < ApplicationController
   end
 
   def show
-    @service = Service.find(params[:id]).includes(:ratings)
+    @service = Service.find(params[:id])
     if @service.nil?
       render json: {message: "Cannot find service"}, status: :not_found
     end
+    @service.average_rating
   end
 
   def update
@@ -32,7 +33,7 @@ class ServicesController < ApplicationController
         render json: {message: "Cannot find service"}, status: :not_found
       end
       @service.update(service_params)
-      render json: {message: "User updated"}, status: :success
+      render json: {message: "User updated"}
     else
       render json: {message: "User not authenticated"}, status: :unauthenticated
     end

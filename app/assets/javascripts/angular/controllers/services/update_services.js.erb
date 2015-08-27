@@ -1,0 +1,42 @@
+app.controller('ServicesUpdateCtrl', ['$scope','$auth','$http','$location','$routeParams', function($scope, $auth, $http, $location,$routeParams){
+  $scope.message = "Update A Service";
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  $auth.validateUser().catch(function(resp) {
+    console.log(resp)
+    $location.path('/')
+  });
+
+  $http.get(url + '/services/' + $routeParams.id).success(function(response) {
+    $scope.service.title = response.title
+    $scope.service.description = response.description
+    $scope.category = response.category.name
+    $scope.service.district = response.district
+  });
+
+  $scope.updateService = function() {
+    $http.get(url + '/categories').then(function(resp) {
+      resp.data.forEach(function(category) {
+        if(category.name == $scope.category) {
+          $scope.service.category_id = category.id
+        }
+      });
+      $http.put(url + '/services/' + $routeParams.id,$scope.service).then(function(response) {
+        console.log(response);
+        $location.path('/services');
+      }).catch(function(response) {
+        console.log(response);
+      });
+    });
+  }
+
+  $scope.deleteService = function() {
+    $http.delete(url + '/services/' + $routeParams.id).then(function(response) {
+      console.log(response)
+      $location.path('/services');
+    }).catch(function(response) {
+        console.log(response);
+    });
+  }
+  
+}]);

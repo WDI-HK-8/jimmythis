@@ -1,10 +1,11 @@
-app.controller('NavbarCtrl', ['$scope', '$auth', '$location','$route', function($scope, $auth, $location,$route){
+app.controller('NavbarCtrl', ['$scope', '$auth', '$location','$window', function($scope, $auth, $location,$window){
 
 
   $auth.validateUser()
     .then(function(resp) {
-      $scope.loggedIn  = true;
       $scope.userId = resp.id;
+      $scope.currentEmail = resp.email;
+      $scope.loggedIn  = true;
     })
     .catch(function(resp) {
       $scope.loggedIn  = false;
@@ -13,8 +14,7 @@ app.controller('NavbarCtrl', ['$scope', '$auth', '$location','$route', function(
     $scope.logout = function() {
     $auth.signOut().then(function(response) {
       console.log(response);
-      $location.path('/');
-      $route.reload();
+      $window.location.href = '/';
     }).catch(function(response) {
       console.log(response);
     });

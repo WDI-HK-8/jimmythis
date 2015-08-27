@@ -1,23 +1,22 @@
 <div class="container-fluid wrap">
 
-  <div class="intro-message text-center">
-      <h2>{{ message }}</h2>
-      <h3>Buy and sell gigs in your neighborhood.</h3>
+  <div class="title-message">
+      <h2>Category: {{ message }}</h2>
   </div>
   
   <div class="main-content">
     <div class="row">
       <div class="category-list col-xs-3">
         <div class="row text-center" ng-repeat="category in categories">
-          <h5><a href="/#/categories/{{ category.id }}">{{ category.name }}</a></h5>
+          <h4><a href="/#/categories/{{ category.id }}">{{ category.name }}</a></h4>
         </div>
       </div>
       <div class="services-list col-xs-9" ng-hide="noServices">
-        <div class="row" ng-repeat="service in services" >
+        <div class="row services-items" ng-repeat="service in services" >
           <div class="services-item-details col-xs-12">
             <h4><a href="/#/services/{{ service.id }}">{{ service.title }}</a></h4>
-            <p>{{ service.description }}</p>
-            <p>Rating: {{ service.average_rating }} | Created on: {{ service.created_at | date:"dd/MM/yyyy" }} | By {{ service.user.name }} | District: {{ service.district }}</p>
+            <p>{{ service.description | limitTo: 110 }}...</p>
+            <p class="services-item-details-mini">Rating: {{ service.average_rating }} | Created on: {{ service.created_at | date:"dd/MM/yyyy" }} | By <a href="/#/profile/{{ service.user.id }}">{{ service.user.name }}</a> | District: {{ service.district }}</p>
           </div>
           <div class="services-item-price">
           </div>

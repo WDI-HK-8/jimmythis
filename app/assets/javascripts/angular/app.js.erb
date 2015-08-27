@@ -33,6 +33,30 @@ app.config(['$routeProvider','$authProvider', function($routeProvider, $authProv
     when('/categories/:id', {
       templateUrl: "<%= asset_path('categories/show.html') %>",
       controller: 'CategoryShowCtrl'
+    }).
+    when('/services/update/:id', {
+      templateUrl: "<%= asset_path('services/update.html') %>",
+      controller: 'ServicesUpdateCtrl'
+    }).
+    when('/services/:id', {
+      templateUrl: "<%= asset_path('services/show.html') %>",
+      controller: 'ServiceShowCtrl'
+    }).
+    when('/orders', {
+      templateUrl: "<%= asset_path('orders/index.html') %>",
+      controller: 'OrdersIndexCtrl'
+    }).
+    when('/orders/contact/:id', {
+      templateUrl: "<%= asset_path('orders/contact.html') %>",
+      controller: 'ContactCtrl'
+    }).
+    when('/services/:id/ratings/create', {
+      templateUrl: "<%= asset_path('services/rating.html') %>",
+      controller: 'RatingsCreateCtrl'
+    }).
+    when('/services/:id/orders/create', {
+      templateUrl: "<%= asset_path('orders/create.html') %>",
+      controller: 'OrdersCreateCtrl'
     })
 
   $authProvider.configure({

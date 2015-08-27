@@ -1,0 +1,62 @@
+<div class="container-fluid wrap">
+
+  <div class="title-message">
+      <h2>{{ message }}</h2>
+      <h3>In <a href="/#/categories/{{ service.category.id }}">{{ service.category.name }}</a></h3>
+  </div>
+  
+  <div class="main-content">
+    <div class="row service-details">
+      <div class="service-details-left col-xs-8">
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+      </div>
+      <div class="service-details-right col-xs-4">
+        <h3><a class="btn btn-order col-xs-12" id="customButton">Order Now (HK$50)</a></h3>
+        <p>Rating: {{ service.average_rating }}</p>
+        <p>Seller: <a href="/#/profile/{{ service.user.id }}">{{ service.user.name }}</a></p>
+        <p>District: {{ service.district }}</p>
+        <p>Created on: {{ service.created_at | date:"dd/MM/yyyy" }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h4>Reviews</h4>
+        <div class="row service-details-ratings" ng-repeat="rating in service.ratings" >
+          <div class="ratings-item-details col-xs-12">
+            <h4><a href="/#/profile/{{ rating.user_id }}">{{ rating.userName }}</a></h4>
+            <p>{{ rating.comment }}</p>
+            <p class="services-item-details-mini">Rating: {{ rating.grade }} | Created on: {{ rating.created_at | date:"dd/MM/yyyy" }}</p>
+          </div>
+        </div>
+        <p ng-show="noRatings">No reviews yet.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var handler = StripeCheckout.configure({
+    key: "<%= ENV['KEY'] %>" || 'pk_test_MZuTvgJY2vnsWCRmi5xFNWKQ',
+    locale: 'auto',
+    token: function(token) {
+      window.location.href = window.location.href + '/orders/create';
+    }
+  });
+
+  $('#customButton').on('click', function(e) {
+    // Open Checkout with further options
+    handler.open({
+      name: 'Jimmy This',
+      description: 'Service',
+      amount: 5000
+    });
+    e.preventDefault();
+  });
+
+  // Close Checkout on page navigation
+  $(window).on('popstate', function() {
+    handler.close();
+  });
+</script>

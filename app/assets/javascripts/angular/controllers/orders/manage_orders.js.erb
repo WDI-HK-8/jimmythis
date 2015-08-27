@@ -1,0 +1,47 @@
+app.controller('OrdersIndexCtrl', ['$scope','$auth','$http','$location', function($scope, $auth, $http, $location){
+  $scope.message = "Manage Orders";
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  $auth.validateUser()
+    .then(function(resp) {
+      $scope.loggedIn = true;
+      $http.get(url + '/users/' + resp.id + '/orders').success(function(response) {
+        if(response.length > 0) {
+          $scope.orders = response;
+          $scope.orders.forEach(function(order) {
+            $http.get(url + '/users/' + order.service.user_id).success(function(seller) {
+              order.seller = seller.name;
+              order.sellerId = seller.id;
+              order.hide = false;
+            });
+          });
+        } else {
+          $scope.noOrders = true
+        }
+      });
+      $http.get(url + '/users/' + resp.id + '/services').success(function(response) {
+        if(response.length > 0) {
+          $scope.sales = [];
+          response.forEach(function(service) {
+            service.orders.forEach(function(order) {
+              $scope.sales.push(order);
+            });
+          });
+          $scope.sales.forEach(function(sale) {
+            console.log(sale);
+            $http.get(url + '/users/' + sale.user_id).success(function(user) {
+              sale.client = user.name
+              sale.clientId = user.id;
+            });
+          });
+        } else {
+          $scope.noSales = true
+        }
+      });
+    })
+    .catch(function(resp) {
+      console.log(resp)
+      $location.path('/')
+    });
+  
+}]);

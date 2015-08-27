@@ -1,0 +1,19 @@
+app.controller('ContactCtrl', ['$scope','$auth','$http','$location','$routeParams', function($scope, $auth, $http, $location,$routeParams){
+  
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  $auth.validateUser()
+    .then(function(resp) {
+      $scope.loggedIn = true;
+      $http.get(url + '/users/' + $routeParams.id).success(function(response) {
+        $scope.message = response.name;
+        $scope.email = response.email;
+        $scope.phone = response.phone
+      });
+    })
+    .catch(function(resp) {
+      console.log(resp)
+      $location.path('/')
+    });
+  
+}]);

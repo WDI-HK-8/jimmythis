@@ -1,11 +1,12 @@
 <div class="container-fluid wrap">
 
-  <div class="title-message">
+  <div class="intro-message text-center">
       <h2>{{ message }}</h2>
+      <h3>Update your service here!</h3>
   </div>
   
   <div class="main-content">
-    <form ng-submit="addService()" ng-init="service = {}">
+    <form ng-submit="updateService()" ng-init="service = {}">
       <div class="form-group">
         <label>Title</label>
         <input type="text" name="title" ng-model="service.title" required="required" class="form-control">
@@ -63,6 +64,7 @@
       
       <button type="submit" class="btn btn-primary">Save</button>
       <a href="/#/services" class="btn btn-danger">Back</a>
+      <a href="" ng-click="deleteService()" name="anchor" class="btn btn-danger">Delete</a>
     </form>
   </div>
 
