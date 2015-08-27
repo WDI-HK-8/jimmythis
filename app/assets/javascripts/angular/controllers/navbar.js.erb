@@ -3,7 +3,8 @@ app.controller('NavbarCtrl', ['$scope', '$auth', '$location','$window', function
 
   $auth.validateUser()
     .then(function(resp) {
-      $scope.userId = resp.id
+      $scope.userId = resp.id;
+      $scope.currentEmail = resp.email;
       $scope.loggedIn  = true;
     })
     .catch(function(resp) {
