@@ -9,23 +9,33 @@ app.controller('OrdersIndexCtrl', ['$scope','$auth','$http','$location', functio
         if(response.length > 0) {
           $scope.orders = response;
           $scope.orders.forEach(function(order) {
-            console.log(order)
-            if(order.user.id == resp.id) {
-              $http.get(url + '/users/' + order.service.user_id).success(function(seller) {
-                order.seller = seller.name;
-                order.sellerId = seller.id;
-                order.contact = order.service.user;
-                order.hide = false;
-              });
-            } else {
-              order.client = order.user.name;
-              order.clientId = order.user.id;
-              order.contact = order.user.id;
-              order.hide = true;
-            }
+            $http.get(url + '/users/' + order.service.user_id).success(function(seller) {
+              order.seller = seller.name;
+              order.sellerId = seller.id;
+              order.hide = false;
+            });
           });
         } else {
           $scope.noOrders = true
+        }
+      });
+      $http.get(url + '/users/' + resp.id + '/services').success(function(response) {
+        if(response.length > 0) {
+          $scope.sales = [];
+          response.forEach(function(service) {
+            service.orders.forEach(function(order) {
+              $scope.sales.push(order);
+            });
+          });
+          $scope.sales.forEach(function(sale) {
+            console.log(sale);
+            $http.get(url + '/users/' + sale.user_id).success(function(user) {
+              sale.client = user.name
+              sale.clientId = user.id;
+            });
+          });
+        } else {
+          $scope.noSales = true
         }
       });
     })
