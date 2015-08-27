@@ -39,7 +39,7 @@ app.config(['$routeProvider','$authProvider', function($routeProvider, $authProv
       controller: 'ServicesUpdateCtrl'
     }).
     when('/services/:id', {
-      templateUrl: "<%= asset_path('services/show.html') %>",
+      templateUrl: "<%= asset_path('services/show.html.erb') %>",
       controller: 'ServiceShowCtrl'
     }).
     when('/orders', {

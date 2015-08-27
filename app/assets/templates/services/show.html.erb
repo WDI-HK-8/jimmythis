@@ -13,6 +13,7 @@
       </div>
       <div class="service-details-right col-xs-4">
         <h3 ng-hide="selfService"><a class="btn btn-order col-xs-12" id="customButton">Order Now (HK$50)</a></h3>
+        <h3 ng-show="selfService">{{ reason }}</h3>
         <p>Rating: {{ service.average_rating }}</p>
         <p>Seller: <a href="/#/profile/{{ service.user.id }}">{{ service.user.name }}</a></p>
         <p>District: {{ service.district }}</p>
