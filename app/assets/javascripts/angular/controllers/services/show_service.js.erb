@@ -3,11 +3,11 @@ app.controller('ServiceShowCtrl', ['$scope','$auth','$http','$location','$routeP
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
 
+  $scope.selfService = true;
+
   $http.get(url + '/services/' + $routeParams.id).success(function(response) {
     console.log(response);
-
     $scope.service = response;
-
     $scope.service.ratings.forEach(function(rating) {
       $http.get(url + '/users/' + rating.user_id).success(function(resp) {
         rating.userName = resp.name;
@@ -19,6 +19,20 @@ app.controller('ServiceShowCtrl', ['$scope','$auth','$http','$location','$routeP
       $scope.service.average_rating = "Not rated yet";
     }
 
+    $scope.selfService = false;
+
+    $auth.validateUser().then(function(resp) {
+      if(resp.id == $scope.service.user.id) {
+        $scope.selfService = true;
+        $scope.reason = "This is your service"
+      }
+    }).catch(function(resp) {
+      $scope.selfService = true;
+      $scope.reason = "Log in to order"
+    });
+
   });
+
+  
   
 }]);

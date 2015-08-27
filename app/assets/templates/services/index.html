@@ -1,19 +1,27 @@
 <div class="container-fluid wrap">
 
   <div class="title-message">
-      <h2>{{ message }}</h2>
+      <h2>{{ message }} <a href="/#/services/create" class="btn btn-title">ADD SERVICE</a></h2>
   </div>
   
   <div class="main-content">
-    <a href="/#/services/create" class="btn btn-primary">Add Service</a>
-    <div ng-repeat="service in services" ng-hide="noServices">
-      <h4>{{ service.title }}</h4>
-      <p>{{ service.description }}
-      <p>Rating: {{ service.average_rating }} | Created on: {{ service.created_at | date:"dd/MM/yyyy" }} | District: {{ service.district }} | Category: {{ service.category.name }}</p>
-      <a href="/#/services/update/{{ service.id }}" class="btn btn-primary">Edit</a>
-      <a href="/#/services/update/{{ service.id }}#anchor" class="btn btn-primary">Delete</a>
+    <div class="row">
+      <div class="services-list col-xs-12" ng-hide="noServices">
+        <div class="row services-items" ng-repeat="service in services" ng-hide='noServices'>
+          <div class="services-item-details col-xs-9">
+            <h4><a href="/#/services/{{ service.id }}">{{ service.title }}</a></h4>
+            <p>{{ service.description }}...</p>
+            <p class="services-item-details-mini">Rating: {{ service.average_rating }} | Created on: {{ service.created_at | date:"dd/MM/yyyy" }} | Category: {{ service.category.name }}</p>
+          </div>
+          <div class="services-item-price text-center">
+            <a href="/#/services/update/{{ service.id }}" class="btn btn-primary">Edit</a>
+            <a href="/#/services/update/{{ service.id }}#anchor" class="btn btn-primary">Delete</a>
+          </div>
+        </div>
+      </div>
+      <h4 ng-show="noServices">No Services currently offered</h4>
+      
     </div>
-    <h4 ng-show="noServices">No Services currently offered</h4>
   </div>
 
 </div>
