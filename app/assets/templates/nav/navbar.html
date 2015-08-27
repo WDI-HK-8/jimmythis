@@ -14,7 +14,7 @@
         <li ng-hide="loggedIn"><a href="/#/login" class="btn navbar-btn">SIGN IN</a></li>
         <li ng-hide="loggedIn"><a href="/#/signup" class="btn navbar-btn-primary">JOIN TODAY</a></li>
         <li class="dropdown" ng-show="loggedIn">
-          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged In <span class="caret"></span></a>
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ currentEmail }} <span class="caret"></span></a>
           <ul class="dropdown-menu">
           <li><a href="/#/profile/{{ userId }}">Public Profile</a></li>
             <li><a href="/#/account">Account Settings</a></li>

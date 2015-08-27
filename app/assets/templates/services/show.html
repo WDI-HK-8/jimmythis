@@ -14,7 +14,7 @@
       <div class="service-details-right col-xs-4">
         <h3><a class="btn btn-order col-xs-12" id="customButton">Order Now (HK$50)</a></h3>
         <p>Rating: {{ service.average_rating }}</p>
-        <p>Seller: {{ service.user.name }}</p>
+        <p>Seller: <a href="/#/profile/{{ service.user.id }}">{{ service.user.name }}</a></p>
         <p>District: {{ service.district }}</p>
         <p>Created on: {{ service.created_at | date:"dd/MM/yyyy" }}</p>
       </div>
@@ -29,6 +29,7 @@
             <p class="services-item-details-mini">Rating: {{ rating.grade }} | Created on: {{ rating.created_at | date:"dd/MM/yyyy" }}</p>
           </div>
         </div>
+        <p ng-show="noRatings">No reviews yet.</p>
       </div>
     </div>
   </div>
