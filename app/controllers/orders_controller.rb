@@ -12,10 +12,11 @@ class OrdersController < ApplicationController
     if user_signed_in?
       @order = Order.find(params[:id])
       if @order.nil?
-        render json: {message: "Cannot find order"}, status: :not_found
+        return render json: {message: "Cannot find order"}, status: :not_found
       end
-      @order.update(order_params)
-      render json: {message: "User updated"}
+      if @order.update(order_params)
+        render json: {message: "User updated"}
+      end
     else
       render json: {message: "User not authenticated"}, status: :unauthenticated
     end
