@@ -12,7 +12,7 @@ I am a student at the University of Hong Kong, and I will fulfill your flyering 
 )
 
 titles     = ["I will post 50 flyers for you at the closest University","
-I will translate English to Spanish 500 words","sing a song","I will record a voice message as a celebrity or cartoon up to 30 sec","
+I will translate English to Spanish 500 words","I will drive you to Discovery Bay on Saturday","I will record a voice message as a celebrity or cartoon up to 30 sec","
 I will give you a psychic love reading in live", "I will write message in beach sand at sunrise", "I will clean your apartment for 1 hour"]
 districts  = ["Sheung Wan","Central","Wong Chuk Hang","Stanley","Mong Kok"]
 
