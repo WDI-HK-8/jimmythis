@@ -10,7 +10,7 @@ a, a:focus, a:active {
 }
 
 a:hover {
-  color: #FE700F;
+  color: #FFAE00;
   text-decoration: none;
 }
 
@@ -81,7 +81,6 @@ a:hover {
   background-color: transparent;
 }
 
-
 .intro-message {
   color: white;
   padding-top: 40px;
@@ -98,7 +97,7 @@ a:hover {
   font-family: 'Lato';
 }
 
-.title-message, .title-message a {
+.title-message {
   color: white;
   padding-top: 20px;
   padding-bottom: 30px;
@@ -110,10 +109,18 @@ a:hover {
   font-size: 34px;
 }
 
+.title-message h3 a {
+  color: white;
+}
+
 .main-content {
   background: white;
   border-radius: 8px;
   padding: 20px; 
+}
+
+.service-details-left h3 {
+  font-weight: 700;
 }
 
 .main-content-small {
@@ -137,10 +144,13 @@ a:hover {
 }
 
 .services-item-details h4 a {
-  color: #4F2815;
+  color: #666;
   font-weight: 700;
 }
 
+.service-details {
+  border-bottom: 1px solid #D9D9D9;
+}
 
 .services-items {
   border-bottom: 1px solid #D9D9D9;
@@ -152,10 +162,30 @@ a:hover {
 }
 
 .services-item-price h4 {
-  color: green;
+  color: #1FBDD3;
 }
 
 .services-item-details-mini {
   color: #999999;
   font-size: 12px;
+}
+
+.btn-order:hover {
+  color: white;
+  border: 1px solid #21D8F1;
+  background-color: #21D8F1;
+  box-shadow: #1690A0 -3px 3px 0;
+  padding: 20px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.btn-order {
+  color: white;
+  border: 1px solid #1FBDD3;
+  background-color: #1FBDD3;
+  box-shadow: #1690A0 -3px 3px 0;
+  padding: 20px;
+  font-size: 18px;
+  margin-bottom: 20px;
 }
