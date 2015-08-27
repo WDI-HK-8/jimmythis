@@ -1,25 +1,29 @@
-categories = ["Advertising","Art & Creative","Business","Fun & Bizarre","Gift Ideas","Graphics","Health & Wellness","Music & Audio","Other","Photography","Programming","Social Marketing","Technology","Tips & Advice","Translation Services","Video","Writing"]
+categories = ["Advertising","Art & Creative","Business","Fun & Bizarre","Gift Ideas","Health & Wellness","Household","Music & Audio","Other","Photography","Programming","Social Marketing","Technology","Tips & Advice","Translation Services","Video","Writing"]
 categories.each { |category| Category.create(name: category)}
 category = Category.first
 
 User.create(
-  name:        "stacy",
+  name:        "Stacy",
   email:       "stacy@gmail.com",
   password:    "stacy12345",
-  description: "Stacy's new description",
+  description: "I have been one of the most successful and consistent advertisers on Jimmy This. 
+I am a student at the University of Hong Kong, and I will fulfill your flyering needs for you! ",
   phone:       12345678
 )
 
-titles     = ["build website","mow lawn","sing a song","clean out your garage","do your taxes"]
-districts  = ["sheung wan","central","wong chuk hang","stanley","mong kok"]
+titles     = ["I will post 50 flyers for you at the closest University","
+I will translate English to Spanish 500 words","I will drive you to Discovery Bay on Saturday","I will record a voice message as a celebrity or cartoon up to 30 sec","
+I will give you a psychic love reading in live", "I will write message in beach sand at sunrise", "I will clean your apartment for 1 hour"]
+districts  = ["Sheung Wan","Central","Wong Chuk Hang","Stanley","Mong Kok"]
 
-names = %w(arnold cassie roger bill myles)
+names = %w(Richard Kody Jeff Harry Raphael)
 names.each do |name|
   user = User.create(
     name:        name,
     email:       "#{name}@gmail.com",
     password:    "#{name}12345",
-    description: "#{name}\'s new description",
+    description: "#{name}\'s been one of the most successful and consistent advertisers on Jimmy This. 
+I am a student at the University of Hong Kong",
     phone:       12345678
   )
 
@@ -27,17 +31,17 @@ names.each do |name|
   service = user.services.create(
     title:       titles[user_pos],
     district:    districts[user_pos],
-    description: "#{titles[user_pos]} for only $50!!",
+    description: "You got the script.. I got the voices!! As I stated above I will record a message in a celebrity or cartoon voice of your choosing for only $5 for 0-30 sec Ideal for Happy Birthday messages,Answering machines,DJ Drops,Radio Sweepers,etc.",
     category:    category
   )
 
   user2 = User.where.not(name: user.name).sample
   service.ratings.create(
-    comment: 'I liked it!!',
-    grade: 8,
+    comment: 'Amazing work! Looking forward to working together again.',
+    grade: 5,
     user: user2
   )
 
   user3 = User.where.not(name: user.name).sample
-  service.orders.create(status: 'almost done', user: user3)
+  service.orders.create(status: 'Awaiting', user: user3)
 end
