@@ -11,19 +11,17 @@ app.controller('OrdersIndexCtrl', ['$scope','$auth','$http','$location', functio
           $scope.orders = response;
           $scope.orders.forEach(function(order) {
             if(order.user.id == resp.id) {
-              order.seller = order.user.name;
-              order.sellerId = 'You';
-              $http.get(url + '/users/' + order.service.user).success(function(client) {
-                order.client = client.name;
-                order.clientId = client.id;
+              $http.get(url + '/users/' + order.service.user).success(function(seller) {
+                order.seller = seller.name;
+                order.sellerId = seller.id;
                 order.contact = order.service.user;
+                $scope.client = false;
               });
             } else {
-              order.seller = 'You';
               order.client = order.user.name;
-              order.sellerId = resp.id
               order.clientId = order.user.id;
               order.contact = order.user.id;
+              $scope.client = true;
             }
           });
         } else {

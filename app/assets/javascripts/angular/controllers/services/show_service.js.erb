@@ -6,6 +6,11 @@ app.controller('ServiceShowCtrl', ['$scope','$auth','$http','$location','$routeP
   $http.get(url + '/services/' + $routeParams.id).success(function(response) {
     console.log(response)
     $scope.service = response;
+    $scope.service.ratings.forEach(function(rating) {
+      $http.get(url + '/users/' + rating.user_id).success(function(resp) {
+        rating.userName = resp.name;
+      })
+    })
   });
   
 }]);
