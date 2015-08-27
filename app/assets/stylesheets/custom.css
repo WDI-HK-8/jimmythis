@@ -209,3 +209,26 @@ a:hover {
   padding: 10px;
   font-size: 14px;
 }
+
+.btn-title {
+  color: white;
+  border: 1px solid #FFAE00;
+  background-color: #FFAE00;
+  box-shadow: #E35803 -3px 3px 0;
+  padding: 10px;
+  font-size: 14px;
+  margin-right: 10px;
+  font-family: 'Lato';
+  text-shadow: none;
+}
+
+.btn-title:hover, .btn-title:focus, {
+  color: white;
+  border: 1px solid #FFAE00;
+  background-color: #FFAE00;
+  box-shadow: #E35803 -3px 3px 0;
+  padding: 10px;
+  font-size: 14px;
+  font-family: 'Lato';
+  text-shadow: none;
+}
