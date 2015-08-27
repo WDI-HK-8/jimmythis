@@ -8,9 +8,15 @@ app.controller('StaticPagesCtrl', ['$scope','$http','$auth','$location','$route'
     if(response) {
       $scope.services = response;
 
+      $scope.services.forEach(function(service) {
+          if(service.average_rating == null) {
+            service.average_rating = "Not rated yet"
+          }
+      });
     } else {
       $scope.noServices = true;
     }
+
   });
 
   $http.get(url + '/categories').success(function(response) {
