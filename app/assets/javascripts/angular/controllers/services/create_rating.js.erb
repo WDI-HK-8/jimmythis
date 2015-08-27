@@ -1,0 +1,24 @@
+app.controller('RatingsCreateCtrl', ['$scope','$auth','$http','$location','$routeParams', function($scope, $auth, $http, $location,$routeParams){
+  $scope.message = "Please rate the service";
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+  var user_id;
+  $auth.validateUser().then(function(resp) {
+    user_id = resp.id;
+  }).catch(function(resp) {
+    console.log(resp)
+    $location.path('/')
+  });
+
+  $scope.addRating = function() {
+    $scope.rating.grade = parseInt($scope.rating.grade);
+    $scope.rating.user_id = user_id;
+    $http.post(url + '/services/' + $routeParams.id + '/ratings',$scope.rating).then(function(response) {
+      console.log(response);
+      $location.path('/services/' + $routeParams.id);
+    }).catch(function(response) {
+      console.log(response);
+    });
+  }
+  
+}]);

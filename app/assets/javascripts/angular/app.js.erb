@@ -49,6 +49,10 @@ app.config(['$routeProvider','$authProvider', function($routeProvider, $authProv
     when('/orders/contact/:id', {
       templateUrl: "<%= asset_path('orders/contact.html') %>",
       controller: 'ContactCtrl'
+    }).
+    when('/services/:id/ratings/create', {
+      templateUrl: "<%= asset_path('services/rating.html') %>",
+      controller: 'RatingsCreateCtrl'
     })
 
   $authProvider.configure({
