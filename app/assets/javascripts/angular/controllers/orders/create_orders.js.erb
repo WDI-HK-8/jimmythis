@@ -4,7 +4,7 @@ app.controller('OrdersCreateCtrl', ['$scope', '$http', '$location', '$auth','$ro
 
   $auth.validateUser().then(function(resp) {
     $http.get(url + '/services/' + $routeParams.id).success(function(service) {
-      $scope.order = {status: "not started", user_id: service.user.id};
+      $scope.order = {status: "not started", user_id: resp.id};
       $http.post(url + '/services/' + $routeParams.id + '/orders',$scope.order).success(function(response) {
         console.log(response);
         $location.path('/orders');
