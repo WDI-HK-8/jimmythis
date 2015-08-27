@@ -1,4 +1,4 @@
-<div class="container-fluid wrap">
+<div class="container-fluid wrap">=
 
   <div class="title-message">
       <h2>{{ message }}</h2>
@@ -12,7 +12,7 @@
         <p>{{ service.description }}</p>
       </div>
       <div class="service-details-right col-xs-4">
-        <h3><a class="btn btn-primary btn-order col-xs-12">Order Now (HK$50)</a></h3>
+        <h3><a class="btn btn-primary btn-order col-xs-12" id="customButton">Order Now (HK$50)</a></h3>
         <p>Rating: {{ service.average_rating }}</p>
         <p>Seller: {{ service.user.name }}</p>
         <p>District: {{ service.district }}</p>
@@ -34,3 +34,30 @@
   </div>
 
 </div>
+
+<script>
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_MZuTvgJY2vnsWCRmi5xFNWKQ',
+    locale: 'auto',
+    token: function(token) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+    }
+  });
+
+  $('#customButton').on('click', function(e) {
+    // Open Checkout with further options
+    handler.open({
+      name: 'Jimmy This',
+      description: 'Service',
+      amount: 5000
+    });
+    e.preventDefault();
+  });
+
+  // Close Checkout on page navigation
+  $(window).on('popstate', function() {
+    handler.close();
+    window.location.href = "/services/ordered"
+  });
+</script>
