@@ -33,7 +33,7 @@ a:hover {
   font-size: 32px;
 }
 
-.navbar-nav > li > .navbar-btn-primary {
+.navbar-nav > li > .navbar-btn-primary, .navbar-nav > li > .navbar-btn-primary:focus {
   color: white;
   border: 1px solid #FFAE00;
   background-color: #FFAE00;
@@ -188,4 +188,22 @@ a:hover {
   padding: 20px;
   font-size: 18px;
   margin-bottom: 20px;
+}
+
+.btn-primary {
+  color: white;
+  border: 1px solid #1FBDD3;
+  background-color: #1FBDD3;
+  box-shadow: #1690A0 -3px 3px 0;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.btn-primary:hover, .btn-primary:focus, {
+  color: white;
+  border: 1px solid #21D8F1;
+  background-color: #21D8F1;
+  box-shadow: #1690A0 -3px 3px 0;
+  padding: 10px;
+  font-size: 14px;
 }
