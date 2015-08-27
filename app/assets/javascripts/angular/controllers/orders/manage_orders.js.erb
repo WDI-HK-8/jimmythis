@@ -1,4 +1,4 @@
-app.controller('OrdersIndexCtrl', ['$scope','$auth','$http','$location', function($scope, $auth, $http, $location){
+app.controller('OrdersIndexCtrl', ['$scope','$auth','$http','$location','$window', function($scope, $auth, $http, $location,$window){
   $scope.message = "Manage Orders";
 
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
@@ -21,14 +21,19 @@ app.controller('OrdersIndexCtrl', ['$scope','$auth','$http','$location', functio
       });
       $http.get(url + '/users/' + resp.id + '/services').success(function(response) {
         if(response.length > 0) {
+          var services = response;
           $scope.sales = [];
-          response.forEach(function(service) {
+          services.forEach(function(service) {
             service.orders.forEach(function(order) {
+              order.title = service.title;
+              order.description = service.description;
+              if(order.status != 'completed') {
+                order.awaiting = true;
+              }
               $scope.sales.push(order);
             });
           });
           $scope.sales.forEach(function(sale) {
-            console.log(sale);
             $http.get(url + '/users/' + sale.user_id).success(function(user) {
               sale.client = user.name
               sale.clientId = user.id;
@@ -43,5 +48,12 @@ app.controller('OrdersIndexCtrl', ['$scope','$auth','$http','$location', functio
       console.log(resp)
       $location.path('/')
     });
+
+    $scope.completed = function(index) {
+      order = $scope.sales[index];
+      $http.put(url + '/services/' + order.service_id + '/orders/' + order.id,{status: 'completed',user_id: order.user_id}).success(function(response) {
+        location.reload();
+      });
+    };
   
 }]);

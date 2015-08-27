@@ -18,11 +18,12 @@
 
   <div class="main-content">
     <h3>Your Sales</h3>
-    <div ng-repeat="sale in sales" ng-hide="noSales">
-      <h4>{{ sale.service.title }}</h4>
-      <p>{{ sale.service.description }}
+    <div ng-repeat="sale in sales track by $index" ng-hide="noSales">
+      <h4>{{ sale.title }}</h4>
+      <p>{{ sale.description }}
       <p>Status: {{ sale.status }} | Created on: {{ sale.created_at | date:"dd/MM/yyyy" }} | Client: <a href="/#/profile/{{ sale.clientId }}">{{ sale.client }}</a></p>
       <a href="/#/orders/contact/{{ sale.clientId }}" class="btn btn-primary">Contact</a>
+      <a href="" ng-click="completed($index)" class="btn btn-primary" ng-show="{{sale.awaiting}}">Update status</a>
     </div>
     <h4 ng-show="noSales">You have no sales</h4>
   </div>
