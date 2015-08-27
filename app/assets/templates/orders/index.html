@@ -27,15 +27,16 @@
       <div class="sales-list col-xs-12">
         <h3>Your Sales</h3>
         <div class="services-list col-xs-12" ng-hide="noServices">
-          <div class="row services-items" ng-repeat="sale in sales" ng-hide='noSales'>
+          <div class="row services-items" ng-repeat="sale in sales track by $index" ng-hide='noSales'>
             <div class="services-item-details col-xs-8">
-              <h4><a href="/#/services/{{ sale.service.id }}">{{ sale.service.title }}</a></h4>
-              <p>{{ sale.service.description }}...</p>
-              <p class="services-item-details-mini">Rating: {{ sale.service.average_rating }} | Created on: {{ sale.created_at | date:"dd/MM/yyyy" }} | Category: {{ sale.service.category.name }} | Seller: <a href="/#/profile/{{ sale.clientId }}">{{ sale.client }}</a></p>
+              <h4><a href="/#/services/{{ sale.service.id }}">{{ sale.title }}</a></h4>
+              <p>{{ sale.description }}...</p>
+              <p class="services-item-details-mini">Rating: {{ sale.service.average_rating }} | Created on: {{ sale.created_at | date:"dd/MM/yyyy" }} | Category: {{ sale.service.category.name }} | Client: <a href="/#/profile/{{ sale.clientId }}">{{ sale.client }}</a></p>
             </div>
             <div class="services-item-price col-xs-4 text-center">
               <p>Status: {{ sale.status }}</p>
               <a href="/#/orders/contact/{{ sale.clientId }}" class="btn btn-primary">Contact</a>
+              <a href="" ng-click="completed($index)" class="btn btn-primary" ng-show="{{sale.awaiting}}">Update status</a>
             </div>
             <h4 ng-show="noSales">You have no sales</h4>
           </div>
