@@ -197,6 +197,7 @@ a:hover {
   box-shadow: #1690A0 -3px 3px 0;
   padding: 10px;
   font-size: 14px;
+  margin-right: 10px;
 }
 
 .btn-primary:hover, .btn-primary:focus, {

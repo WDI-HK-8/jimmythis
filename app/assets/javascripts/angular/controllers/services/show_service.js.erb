@@ -4,13 +4,19 @@ app.controller('ServiceShowCtrl', ['$scope','$auth','$http','$location','$routeP
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
 
   $http.get(url + '/services/' + $routeParams.id).success(function(response) {
-    console.log(response)
+    console.log(response);
+
     $scope.service = response;
     $scope.service.ratings.forEach(function(rating) {
       $http.get(url + '/users/' + rating.user_id).success(function(resp) {
         rating.userName = resp.name;
       })
-    })
+    });
+
+    if (!response.average_rating) {
+      $scope.service.average_rating = "Not rated yet";
+    }
+
   });
   
 }]);
