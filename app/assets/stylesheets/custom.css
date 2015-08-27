@@ -168,6 +168,7 @@ a:hover {
 .services-item-details-mini {
   color: #999999;
   font-size: 12px;
+  font-style: italic;
 }
 
 .btn-order:hover {
