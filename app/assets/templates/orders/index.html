@@ -8,7 +8,7 @@
     <div ng-repeat="order in orders" ng-hide="noOrders">
       <h4>{{ order.service.title }}</h4>
       <p>{{ order.service.description }}
-      <p>Status: {{ order.status }} | Created on: {{ order.created_at | date:"dd/MM/yyyy" }} | <span ng-hide="client">Seller: <a href="/#/profile/{{ order.sellerId }}">{{ order.seller }}</a> |</span><span ng-show="client"> Client: <a href="/#/profile/{{ order.clientId }}">{{ order.client }}</a></span></p>
+      <p>Status: {{ order.status }} | Created on: {{ order.created_at | date:"dd/MM/yyyy" }} | <span ng-hide="order.hide">Seller: <a href="/#/profile/{{ order.sellerId }}">{{ order.seller }}</a> |</span><span ng-show="order.hide"> Client: <a href="/#/profile/{{ order.clientId }}">{{ order.client }}</a></span></p>
       <a href="/#/orders/contact/{{ order.contact }}" class="btn btn-primary">Contact</a>
       <a href="/#/services/{{ order.service.id }}/ratings/create" class="btn btn-primary" ng-show="client">Rate Service</a>
     </div>

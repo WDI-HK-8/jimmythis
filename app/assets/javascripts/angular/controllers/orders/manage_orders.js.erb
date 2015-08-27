@@ -6,22 +6,22 @@ app.controller('OrdersIndexCtrl', ['$scope','$auth','$http','$location', functio
     .then(function(resp) {
       $scope.loggedIn = true;
       $http.get(url + '/users/' + resp.id + '/orders').success(function(response) {
-        console.log(response)
         if(response.length > 0) {
           $scope.orders = response;
           $scope.orders.forEach(function(order) {
+            console.log(order)
             if(order.user.id == resp.id) {
-              $http.get(url + '/users/' + order.service.user).success(function(seller) {
+              $http.get(url + '/users/' + order.service.user_id).success(function(seller) {
                 order.seller = seller.name;
                 order.sellerId = seller.id;
                 order.contact = order.service.user;
-                $scope.client = false;
+                order.hide = false;
               });
             } else {
               order.client = order.user.name;
               order.clientId = order.user.id;
               order.contact = order.user.id;
-              $scope.client = true;
+              order.hide = true;
             }
           });
         } else {

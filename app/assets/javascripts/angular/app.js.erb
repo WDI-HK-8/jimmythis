@@ -54,9 +54,9 @@ app.config(['$routeProvider','$authProvider', function($routeProvider, $authProv
       templateUrl: "<%= asset_path('services/rating.html') %>",
       controller: 'RatingsCreateCtrl'
     }).
-    when('/ordered', {
-      templateUrl: "<%= asset_path('services/rating.html') %>",
-      controller: 'RatingsCreateCtrl'
+    when('/services/:id/orders/create', {
+      templateUrl: "<%= asset_path('orders/create.html') %>",
+      controller: 'OrdersCreateCtrl'
     })
 
   $authProvider.configure({

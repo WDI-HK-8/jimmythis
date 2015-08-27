@@ -1,4 +1,4 @@
-<div class="container-fluid wrap">=
+<div class="container-fluid wrap">
 
   <div class="title-message">
       <h2>{{ message }}</h2>
@@ -40,8 +40,7 @@
     key: 'pk_test_MZuTvgJY2vnsWCRmi5xFNWKQ',
     locale: 'auto',
     token: function(token) {
-      // Use the token to create the charge with a server-side script.
-      // You can access the token ID with `token.id`
+      window.location.href = window.location.href + '/orders/create';
     }
   });
 

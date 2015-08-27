@@ -1,0 +1,19 @@
+app.controller('OrdersCreateCtrl', ['$scope', '$http', '$location', '$auth','$routeParams', function($scope, $http, $location, $auth,$routeParams){
+
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000";
+
+  $auth.validateUser().then(function(resp) {
+    $http.get(url + '/services/' + $routeParams.id).success(function(service) {
+      $scope.order = {status: "not started", user_id: service.user.id};
+      $http.post(url + '/services/' + $routeParams.id + '/orders',$scope.order).success(function(response) {
+        console.log(response);
+        $location.path('/orders');
+      });
+    });
+  }).catch(function(resp) {
+    console.log(resp)
+    $location.path('/');
+  })
+
+
+}]);
